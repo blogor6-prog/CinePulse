@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>CinePulse - Watch & Download HD English Movies</title>
+  <title>CineVibeBD - HD English Movies & Web Series</title>
   
   <meta name="theme-color" content="#050507">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -20,15 +20,18 @@
       --bg-dark: #050507;
       --card-bg: #12131a;
       --border-color: rgba(255, 255, 255, 0.08);
-      --glass-bg: rgba(20, 20, 28, 0.65);
+      --glass-bg: rgba(20, 20, 28, 0.68);
       --glass-border: rgba(255, 255, 255, 0.14);
       --primary: #e11d48;
       --primary-hover: #be123c;
       --accent-blue: #38bdf8;
-      --accent-yellow: #facc15;
-      --accent-green: #22c55e;
       --text-main: #ffffff;
       --text-muted: #a1a1aa;
+      --accent-yellow: #facc15;
+      --accent-green: #22c55e;
+      --accent-orange: #f97316;
+      --accent-purple: #a855f7;
+      --danger: #ef4444;
     }
 
     * {
@@ -53,17 +56,17 @@
       top: 0;
       left: 0;
       width: 100%;
-      padding: 12px 14px;
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
       z-index: 500;
-      background: linear-gradient(180deg, rgba(5, 5, 7, 0.9) 0%, rgba(5, 5, 7, 0.4) 70%, transparent 100%);
+      background: linear-gradient(180deg, rgba(5, 5, 7, 0.92) 0%, rgba(5, 5, 7, 0.45) 70%, transparent 100%);
       transition: background 0.3s ease;
     }
     .top-glass-header.scrolled {
-      background: rgba(5, 5, 7, 0.95);
+      background: rgba(5, 5, 7, 0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color);
     }
@@ -71,8 +74,8 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 16px;
+      gap: 5px;
+      font-size: 14.5px;
       font-weight: 800;
       color: #ffffff;
       cursor: pointer;
@@ -80,44 +83,45 @@
       flex-shrink: 0;
     }
     .brand-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 7px;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
       background: linear-gradient(135deg, #e11d48, #9f1239);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.4);
+      font-size: 10px;
+      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.45);
     }
 
     .glass-nav-pills {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       background: var(--glass-bg);
       backdrop-filter: blur(14px);
       border: 1px solid var(--glass-border);
-      padding: 4px;
+      padding: 3px;
       border-radius: 999px;
       overflow-x: auto;
       scrollbar-width: none;
-      max-width: 60%;
+      flex: 1;
+      max-width: 56%;
     }
     .glass-nav-pills::-webkit-scrollbar { display: none; }
 
-    .glass-pill {
+    .pill {
       color: #d4d4d8;
       font-size: 11px;
       font-weight: 600;
-      padding: 5px 11px;
+      padding: 4px 10px;
       border-radius: 999px;
-      cursor: pointer;
       white-space: nowrap;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
-    .glass-pill.active {
-      background: rgba(225, 29, 72, 0.85);
+    .pill.active {
+      background: rgba(225, 29, 72, 0.9);
       color: #ffffff;
       font-weight: 700;
       box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
@@ -126,32 +130,66 @@
     .top-right-actions {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       flex-shrink: 0;
+      position: relative;
     }
     .glass-icon-btn {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--glass-bg);
       backdrop-filter: blur(14px);
       border: 1px solid var(--glass-border);
       color: #fff;
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
     }
+    .req-btn-top {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-    /* Expandable Search Overlay Bar */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 40px;
+      background: #12131a;
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.85);
+      z-index: 1000;
+      width: 170px;
+      overflow: hidden;
+    }
+    .dropdown-menu div {
+      padding: 11px 14px;
+      font-size: 13px;
+      color: #f1f5f9;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .dropdown-menu div:hover { background: rgba(225, 29, 72, 0.15); }
+
+    /* Expandable Search Bar */
     .search-bar-panel {
       display: none;
       position: fixed;
-      top: 58px;
+      top: 54px;
       left: 0;
       width: 100%;
-      padding: 10px 14px;
+      padding: 10px 12px;
       background: rgba(10, 10, 14, 0.96);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-color);
@@ -162,20 +200,17 @@
     .search-wrapper {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
-    .search-box {
-      position: relative;
-      flex-grow: 1;
-    }
+    .search-box { position: relative; flex-grow: 1; }
     .search-box input {
       width: 100%;
-      padding: 10px 38px 10px 14px;
+      padding: 9px 36px 9px 14px;
       border-radius: 999px;
       border: 1px solid var(--glass-border);
       background: #16161e;
       color: #fff;
-      font-size: 13px;
+      font-size: 13.5px;
       outline: none;
     }
     .search-box input:focus { border-color: var(--primary); }
@@ -194,22 +229,25 @@
       background: linear-gradient(135deg, #e11d48, #9f1239);
       color: #fff;
       border: none;
-      padding: 10px 12px;
+      padding: 9px 11px;
       border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
+      font-size: 11px;
+      font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 3px;
     }
 
     /* Hero Banner Slider */
     .hero-banner-wrap {
       position: relative;
       width: 100%;
-      height: 430px;
+      height: 425px;
       overflow: hidden;
       background: #0a0a0f;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .hero-bg-img {
       position: absolute;
@@ -224,12 +262,12 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(0deg, #050507 4%, rgba(5, 5, 7, 0.88) 28%, rgba(5, 5, 7, 0.35) 65%, rgba(5, 5, 7, 0.5) 100%),
+        linear-gradient(0deg, #050507 4%, rgba(5, 5, 7, 0.88) 28%, rgba(5, 5, 7, 0.35) 65%, rgba(5, 5, 7, 0.52) 100%),
         linear-gradient(90deg, rgba(5, 5, 7, 0.85) 0%, rgba(5, 5, 7, 0.3) 55%, transparent 100%);
     }
     .hero-content {
       position: absolute;
-      bottom: 24px;
+      bottom: 22px;
       left: 14px;
       right: 14px;
       z-index: 10;
@@ -243,11 +281,11 @@
       margin-bottom: 4px;
     }
     .hero-title {
-      font-size: 26px;
-      font-weight: 900;
+      font-size: 25px;
+      font-weight: 800;
       color: #ffffff;
-      line-height: 1.15;
-      margin-bottom: 8px;
+      line-height: 1.18;
+      margin-bottom: 7px;
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -259,10 +297,10 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       font-size: 11.5px;
       color: #d4d4d8;
-      font-weight: 500;
+      font-weight: 600;
     }
     .hero-rating-pill {
       background: rgba(255, 255, 255, 0.14);
@@ -278,7 +316,7 @@
       line-height: 1.45;
       color: #cbd5e1;
       max-width: 92%;
-      margin-bottom: 14px;
+      margin-bottom: 13px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -299,7 +337,7 @@
       background: #e11d48;
       color: #ffffff;
       border: none;
-      padding: 9px 18px;
+      padding: 8px 18px;
       border-radius: 999px;
       font-size: 12.5px;
       font-weight: 700;
@@ -314,7 +352,7 @@
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.18);
       color: #ffffff;
-      padding: 9px 16px;
+      padding: 8px 15px;
       border-radius: 999px;
       font-size: 12.5px;
       font-weight: 600;
@@ -324,7 +362,7 @@
       gap: 5px;
     }
     .hero-dots-pill {
-      background: rgba(20, 20, 28, 0.7);
+      background: rgba(20, 20, 28, 0.72);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 5px 8px;
@@ -347,9 +385,52 @@
       background: #e11d48;
     }
 
-    /* Main Content Container */
+    /* Main Container */
     .main-container {
       padding: 0 12px;
+    }
+
+    /* Notice & Viral Button */
+    .welcome-notice-bar {
+      background: rgba(20, 21, 30, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+      padding: 9px 12px;
+      margin: 6px 0 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .welcome-notice-bar p { font-size: 11.5px; line-height: 1.4; color: #e2e8f0; }
+    .notice-close-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .viral-btn-wrap { margin-bottom: 12px; }
+    .viral-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #e11d48, #f97316);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3);
     }
 
     /* Section Header */
@@ -388,10 +469,10 @@
     }
     .horizontal-scroll-row::-webkit-scrollbar { display: none; }
     .horizontal-scroll-row .movie-card {
-      flex: 0 0 118px;
+      flex: 0 0 116px;
     }
     .horizontal-scroll-row .movie-poster-wrap {
-      height: 168px;
+      height: 165px;
     }
 
     /* 3-Column Grid */
@@ -401,7 +482,6 @@
       gap: 10px;
       margin-bottom: 15px;
     }
-
     .movie-card {
       background: transparent;
       border-radius: 8px;
@@ -416,8 +496,8 @@
 
     .movie-poster-wrap {
       width: 100%;
-      height: 162px;
-      background: #14151c;
+      height: 160px;
+      background: #12131a;
       position: relative;
       overflow: hidden;
       border-radius: 8px;
@@ -433,11 +513,12 @@
       display: block;
     }
 
+    /* Rating Badge Top-Left */
     .card-rating-badge {
       position: absolute;
       top: 6px;
       left: 6px;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(4px);
       color: #ffffff;
       font-size: 9.5px;
@@ -462,9 +543,20 @@
       padding: 2px 6px;
       border-radius: 4px;
       z-index: 3;
-      text-transform: uppercase;
     }
-    .quality-badge.pinned-tag { background: #eab308; color: #000; }
+    .series-badge { background: linear-gradient(135deg, #a855f7, #6366f1) !important; }
+    .pin-badge {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: #f59e0b;
+      color: #000;
+      font-size: 8px;
+      font-weight: 900;
+      padding: 2px 5px;
+      border-radius: 3px;
+      z-index: 5;
+    }
 
     .remove-cw-btn {
       position: absolute;
@@ -473,7 +565,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #fff;
       font-size: 11px;
@@ -489,7 +581,7 @@
     }
     .movie-title {
       font-size: 11.5px;
-      font-weight: 600;
+      font-weight: 700;
       color: #f4f4f5;
       white-space: nowrap;
       overflow: hidden;
@@ -505,7 +597,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 72px 0 14px 0;
+      margin: 70px 0 14px 0;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border-color);
     }
@@ -517,7 +609,7 @@
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
     }
 
@@ -571,25 +663,17 @@
       cursor: pointer;
       gap: 3px;
     }
-    .nav-item.active { color: var(--primary); font-weight: 700; }
+    .nav-item.active { color: var(--primary); font-weight: bold; }
     .nav-icon { font-size: 18px; }
 
-    /* Bottom Ads Section */
+    /* Bottom Ad Section */
     .bottom-ad-section {
       margin: 22px 12px 10px 12px;
-      padding-top: 16px;
+      padding-top: 15px;
       border-top: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       gap: 14px;
-    }
-    .ad-label-muted {
-      text-align: center;
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: #71717a;
-      text-transform: uppercase;
-      margin-bottom: -6px;
     }
     .entry-ad-banner {
       background: linear-gradient(135deg, #1f1024, #3b0a18);
@@ -599,7 +683,7 @@
       border: 1px dashed rgba(225, 29, 72, 0.6);
       cursor: pointer;
     }
-    .entry-ad-banner p { font-size: 13px; color: #f8fafc; font-weight: 700; }
+    .entry-ad-banner p { font-size: 13px; color: #f8fafc; font-weight: bold; }
     .entry-ad-banner span {
       background: #e11d48;
       color: #fff;
@@ -639,7 +723,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(5, 5, 7, 0.92);
+      background: rgba(5, 5, 7, 0.94);
       backdrop-filter: blur(10px);
       padding: 12px 14px;
       display: flex;
@@ -655,7 +739,7 @@
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 12.5px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -664,7 +748,7 @@
 
     .cine-hero-banner {
       width: 100%;
-      height: 230px;
+      height: 225px;
       position: relative;
       background-size: cover;
       background-position: center;
@@ -682,7 +766,7 @@
 
     .cine-main-info {
       padding: 0 14px;
-      margin-top: -70px;
+      margin-top: -68px;
       position: relative;
       z-index: 10;
       display: flex;
@@ -690,8 +774,8 @@
     }
 
     .cine-poster {
-      width: 108px;
-      height: 155px;
+      width: 105px;
+      height: 148px;
       border-radius: 8px;
       object-fit: cover;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
@@ -703,12 +787,12 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
       flex: 1;
       min-width: 0;
     }
     .cine-title {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.3;
@@ -730,12 +814,12 @@
       border-radius: 4px;
     }
     .chip-yellow { color: #facc15; border-color: rgba(250, 204, 21, 0.3); }
-    .chip-red { color: #fb7185; border-color: rgba(225, 29, 72, 0.4); }
+    .chip-blue { color: #fb7185; border-color: rgba(225, 29, 72, 0.4); }
 
     .cine-details-desc-box {
       font-size: 12px;
       color: #e4e4e7;
-      line-height: 1.55;
+      line-height: 1.6;
       background: #12131a;
       border: 1px solid var(--border-color);
       border-radius: 8px;
@@ -754,7 +838,7 @@
       padding: 11px;
       border-radius: 999px;
       font-size: 12.5px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -789,7 +873,7 @@
     .cast-title {
       font-size: 13.5px;
       font-weight: 800;
-      color: #ffffff;
+      color: #facc15;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
@@ -827,7 +911,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       width: 100%;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .cine-player-wrap {
@@ -861,7 +945,7 @@
       padding: 4px 10px;
       border-radius: 20px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
     .quality-pill-btn.active {
@@ -874,10 +958,10 @@
       background: #14151c;
       color: #fff;
       border: 1px solid var(--border-color);
-      padding: 5px 10px;
+      padding: 5px 9px;
       border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 10.5px;
+      font-weight: bold;
       cursor: pointer;
     }
     .server-btn.active { background: var(--primary); border-color: var(--primary); }
@@ -927,18 +1011,18 @@
       padding: 9px;
       border-radius: 8px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
     }
     .tg-req-btn {
       flex: 1.4;
-      background: linear-gradient(135deg, #16a34a, #15803d);
+      background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
       border: none;
       padding: 9px;
       border-radius: 8px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
     }
 
@@ -948,7 +1032,7 @@
       border-radius: 10px;
       padding: 16px;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .ad-step-btn {
       width: 100%;
@@ -1005,7 +1089,7 @@
       padding: 10px 16px;
       border-radius: 30px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       box-shadow: 0 10px 25px rgba(0,0,0,0.8);
       z-index: 9999;
       display: none;
@@ -1044,7 +1128,7 @@
     .request-box h3 { font-size: 16px; color: #ffffff; margin-bottom: 8px; }
     .request-box input {
       width: 100%;
-      padding: 11px 14px;
+      padding: 10px 14px;
       border-radius: 8px;
       border: 1px solid var(--border-color);
       background: #0a0a0f;
@@ -1053,12 +1137,12 @@
       outline: none;
     }
     .req-submit-btn {
-      background: linear-gradient(135deg, #e11d48, #be123c);
+      background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
       border: none;
-      padding: 11px 18px;
+      padding: 10px 18px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
       width: 100%;
     }
@@ -1083,11 +1167,11 @@
       cursor: pointer;
     }
     .search-count-pill {
-      background: #facc15;
+      background: #f59e0b;
       color: #000;
       font-weight: 800;
       font-size: 11px;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 12px;
     }
   </style>
@@ -1095,7 +1179,7 @@
 <body>
 
   <div class="social-ad-toast" id="socialAdToast">
-    <span>📢 Click the ad once &amp; return to continue!</span>
+    <span>📢 Click the ad once and come right back!</span>
     <span onclick="this.parentElement.style.display='none'" style="cursor:pointer; font-weight:900;">✕</span>
   </div>
 
@@ -1103,22 +1187,33 @@
   <header class="top-glass-header" id="topGlassHeader">
     <div class="brand-logo" onclick="goHome()">
       <div class="brand-dot">▶</div>
-      <span>CinePulse</span>
+      <span>CineVibeBD</span>
     </div>
 
     <div class="glass-nav-pills">
-      <div class="glass-pill active" onclick="selectCategory('All', event)">Home</div>
-      <div class="glass-pill" onclick="selectCategory('Trending', event)">Trending</div>
-      <div class="glass-pill" onclick="selectCategory('Action', event)">Action</div>
-      <div class="glass-pill" onclick="selectCategory('Thriller', event)">Thriller</div>
-      <div class="glass-pill" onclick="selectCategory('Sci-Fi', event)">Sci-Fi</div>
-      <div class="glass-pill" onclick="selectCategory('Horror', event)">Horror</div>
-      <div class="glass-pill" onclick="selectCategory('Comedy', event)">Comedy</div>
-      <div class="glass-pill" onclick="selectCategory('Top Rated', event)">Top Rated</div>
+      <div class="pill active" onclick="selectCategory('All', event)">All</div>
+      <div class="pill" onclick="selectCategory('Series', event)">Series</div>
+      <div class="pill" onclick="selectCategory('Trending', event)">Trending</div>
+      <div class="pill" onclick="selectCategory('Hollywood', event)">Hollywood</div>
+      <div class="pill" onclick="selectCategory('Action', event)">Action</div>
+      <div class="pill" onclick="selectCategory('Sci-Fi', event)">Sci-Fi</div>
+      <div class="pill" onclick="selectCategory('Horror', event)">Horror</div>
     </div>
 
     <div class="top-right-actions">
-      <button class="glass-icon-btn" onclick="toggleSearchPanel()" title="Search Movies">🔍</button>
+      <button class="req-btn-top" onclick="openRequestModal()">📩 Request</button>
+      <button class="glass-icon-btn" onclick="toggleSearchPanel()" title="Search">🔍</button>
+      <button class="glass-icon-btn" onclick="toggleMenu(event)" title="Menu">⋮</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <div onclick="selectCategory('All', event)">🌐 All Movies</div>
+        <div onclick="selectCategory('Series', event)">📺 Web Series</div>
+        <div onclick="selectCategory('Trending', event)">🔥 Trending</div>
+        <div onclick="selectCategory('Hollywood', event)">🎬 Hollywood</div>
+        <div onclick="selectCategory('Action', event)">💥 Action</div>
+        <div onclick="selectCategory('Sci-Fi', event)">🚀 Sci-Fi</div>
+        <div onclick="selectCategory('Horror', event)">👻 Horror</div>
+        <div onclick="selectCategory('Comedy', event)">😂 Comedy</div>
+      </div>
     </div>
   </header>
 
@@ -1126,10 +1221,10 @@
   <div class="search-bar-panel" id="searchBarPanel">
     <div class="search-wrapper">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search English movies (e.g. Inception, 2026)..." onkeyup="handleSearch()">
+        <input type="text" id="searchInput" placeholder="Search any movie or series..." onkeyup="handleSearch()">
         <button class="voice-btn" onclick="startVoiceSearch()" title="Voice Search">🎙️</button>
       </div>
-      <button class="user-search-stats-btn" onclick="openUserSearchesModal()" title="Most Searched Movies">
+      <button class="user-search-stats-btn" onclick="openUserSearchesModal()" title="Most searched movies">
         🔥 Top Searches
       </button>
     </div>
@@ -1140,39 +1235,49 @@
     <img id="heroBgImg" class="hero-bg-img" src="" alt="Featured Movie" onerror="handleImageError(this)">
     <div class="hero-gradient"></div>
     <div class="hero-content">
-      <div class="hero-type-tag" id="heroTypeTag">ENGLISH MOVIE</div>
-      <h1 class="hero-title" id="heroTitle">Loading Featured Movies...</h1>
+      <div class="hero-type-tag" id="heroTypeTag">MOVIE</div>
+      <h1 class="hero-title" id="heroTitle">CineVibeBD</h1>
       <div class="hero-meta-line">
         <span class="hero-rating-pill" id="heroRatingPill">★ 8.0</span>
-        <span id="heroGenresText">Action · Sci-Fi · Thriller</span>
+        <span id="heroGenresText">HD English Movies &amp; Web Series</span>
       </div>
-      <p class="hero-desc" id="heroDescText">Stream and download the latest HD English movies online.</p>
+      <p class="hero-desc" id="heroDescText">Loading movies... Please wait.</p>
       <div class="hero-actions-row">
         <div class="hero-btns-left">
-          <button class="btn-hero-play" id="heroPlayBtn" onclick="playHeroMovie()">▶ Play</button>
-          <button class="btn-hero-info" id="heroInfoBtn" onclick="openHeroInfo()">ⓘ More Info</button>
+          <button class="btn-hero-play" onclick="playHeroMovie()">▶ Play</button>
+          <button class="btn-hero-info" onclick="openHeroInfo()">ⓘ More Info</button>
         </div>
         <div class="hero-dots-pill" id="heroDotsContainer"></div>
       </div>
     </div>
   </section>
 
-  <!-- Main Sections -->
-  <main class="main-container" id="homeSectionsContainer">
+  <div class="main-container" id="homeSectionsContainer">
+    <div class="welcome-notice-bar" id="topWelcomeNotice">
+      <p>📢 <b>Dear Viewer:</b> Use the search box to find any movie or series. If you can't find it, submit the title in the <b>Request</b> box.</p>
+      <button class="notice-close-btn" onclick="closeNotice()">Got it ✕</button>
+    </div>
 
-    <!-- Continue Watching -->
+    <div class="viral-btn-wrap">
+      <a href="https://t.me/supersp49" target="_blank" class="viral-btn" onclick="openSafeUrl('https://t.me/supersp49'); return false;">
+        🔥 Viral Video Link (Click Here) 🔞
+      </a>
+    </div>
+
+    <!-- Continue Watching with Clear Button -->
     <div id="continueWatchingBlock" style="display: none;">
       <div class="section-header">
         <span class="section-title">Continue Watching</span>
+        <button class="see-all-btn" onclick="clearContinueWatching()" title="Clear Continue Watching">🔄 Clear</button>
       </div>
       <div class="horizontal-scroll-row" id="continueWatchingRow"></div>
     </div>
 
-    <!-- Trending Now Horizontal Carousel -->
+    <!-- Trending & Featured Horizontal Carousel -->
     <div id="trendingSection" style="display: none;">
       <div class="section-header">
         <span class="section-title">🔥 Trending Now</span>
-        <button class="see-all-btn" onclick="openSeeAll('trending')">See All ➔</button>
+        <button class="see-all-btn" onclick="openSeeAll('trending')">SEE ALL ➔</button>
       </div>
       <div class="horizontal-scroll-row" id="trendingList"></div>
     </div>
@@ -1180,45 +1285,49 @@
     <!-- Pinned Movies Horizontal Carousel -->
     <div id="pinnedSectionBlock" style="display: none;">
       <div class="section-header">
-        <span class="section-title">📌 Pinned Picks</span>
-        <button class="see-all-btn" onclick="openSeeAll('pinned')">See All ➔</button>
+        <span class="section-title">📌 Pinned Movies</span>
+        <button class="see-all-btn" onclick="openSeeAll('pinned')">SEE ALL ➔</button>
       </div>
       <div class="horizontal-scroll-row" id="pinnedMoviesGrid"></div>
     </div>
 
-    <!-- Recently Added 3-Column Grid + Pagination -->
+    <!-- English / Hollywood Movies Horizontal Carousel -->
+    <div id="englishSectionBlock" style="display: none;">
+      <div class="section-header">
+        <span class="section-title">🎬 English &amp; Hollywood</span>
+        <button class="see-all-btn" onclick="openSeeAll('english')">SEE ALL ➔</button>
+      </div>
+      <div class="horizontal-scroll-row" id="englishMoviesGrid"></div>
+    </div>
+
+    <!-- Recently Added 3-Column Grid -->
     <div id="recentSectionBlock">
       <div class="section-header">
-        <span class="section-title">🆕 Recently Added English Movies</span>
-        <button class="see-all-btn" onclick="openRequestModal()">+ Request</button>
+        <span class="section-title">🆕 Recently Added</span>
       </div>
       <div class="movies-grid" id="recentMoviesGrid">
-        <div style="grid-column: span 3; text-align: center; padding: 40px 10px; color: #a1a1aa; font-size: 13px;">
-          Loading English movies... Please wait ⏳
+        <div style="grid-column: span 3; text-align: center; padding: 40px 10px; color: #a1a1aa; font-size: 14px;">
+          Loading movies... Please wait ⏳
         </div>
       </div>
       <div class="pagination-bar" id="homePaginationBar" style="display: none;"></div>
     </div>
+  </div>
 
-  </main>
-
-  <!-- Category / Search Full Results View -->
   <div class="main-container" id="fullListViewBlock" style="display: none;">
     <div class="full-view-header">
-      <h2 id="fullViewTitle">English Movies</h2>
-      <button class="back-home-btn" onclick="goHome()">← Back Home</button>
+      <h2 id="fullViewTitle">All Collections</h2>
+      <button class="back-home-btn" onclick="goHome()">🔙 Back to Home</button>
     </div>
     <div class="movies-grid" id="fullListGrid"></div>
     <div class="pagination-bar" id="fullListPaginationBar" style="display: none;"></div>
   </div>
 
-  <!-- ADS SECTION -->
+  <!-- Ads Section (Smartlink + Banner 300x250 + Native Banner) -->
   <div class="bottom-ad-section">
-    <div class="ad-label-muted">Sponsored Advertisement</div>
-
     <!-- Smartlink Sponsor Banner -->
     <div class="entry-ad-banner" onclick="openEntryAd()">
-      <p><span>SPONSOR</span> Exclusive Offers &amp; Fast Server Access 🎁</p>
+      <p><span>SPONSOR</span> Check out sponsored offers 🎁</p>
     </div>
 
     <!-- Banner 300x250 -->
@@ -1245,8 +1354,8 @@
   <!-- Movie Detail Page (Overlay) -->
   <div class="cine-detail-view" id="cineDetailView">
     <div class="cine-top-nav">
-      <button class="cine-back-btn" onclick="closeCineDetail()">← Back</button>
-      <span style="font-size: 13px; font-weight: 800; color: #ffffff;">▶ CinePulse</span>
+      <button class="cine-back-btn" onclick="closeCineDetail()">⬅️ Back</button>
+      <span style="font-size: 13px; font-weight: 800; color: #ffffff;">▶ CineVibeBD</span>
       <button class="cine-back-btn" onclick="copyMovieShareLink()">🔗 Share</button>
     </div>
 
@@ -1258,7 +1367,7 @@
         <h2 class="cine-title" id="cineMovieTitle">Movie Title</h2>
         <div class="cine-badges-wrap">
           <span class="cine-chip chip-yellow" id="cineRatingChip">⭐ 8.0</span>
-          <span class="cine-chip chip-red" id="cineQualityChip">WEB-DL</span>
+          <span class="cine-chip chip-blue" id="cineQualityChip">WEB-DL</span>
         </div>
         <div class="cine-details-desc-box" id="cineDetailsDescBox"></div>
       </div>
@@ -1266,13 +1375,13 @@
 
     <div class="cine-action-grid">
       <button class="cine-btn btn-watch-online" onclick="playOnlineMovie()">
-        ▶ Watch Full Movie Online (HD Stream)
+        ▶️ Watch Full Movie
       </button>
       <button class="cine-btn btn-trailer" onclick="playOfficialTrailer()">
-        🎬 Official Trailer
+        🎬 Watch Trailer
       </button>
       <button class="cine-btn btn-download" onclick="scrollToDownload()">
-        📥 Download Links
+        📥 Download Options
       </button>
     </div>
 
@@ -1282,10 +1391,18 @@
     </div>
 
     <div class="cine-player-wrap" id="cinePlayerWrap">
-      <iframe class="cine-video-frame" id="cineVideoPlayer" src="" allowfullscreen></iframe>
+      <div id="trailerStatusMsg" style="display:none; background:rgba(225,29,72,0.14); border:1px solid rgba(225,29,72,0.4); color:#facc15; font-size:12px; font-weight:700; padding:8px 12px; border-radius:8px; margin-bottom:8px; text-align:center;"></div>
+      <iframe class="cine-video-frame" id="cineVideoPlayer" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      <video class="cine-video-frame" id="cineDirectVideo" controls autoplay playsinline style="display:none; object-fit:contain;"></video>
       
+      <div id="directExternalBar" style="display:none; margin-top:8px; text-align:center;">
+        <button id="btnDirectExternalOpen" class="quality-pill-btn" style="background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.5); color:#38bdf8; padding:6px 14px;">
+          🔗 Video not playing? Open directly in browser
+        </button>
+      </div>
+
       <div class="player-control-group">
-        <div class="quality-switch-bar">
+        <div class="quality-switch-bar" id="qualitySwitchBar">
           <button class="quality-pill-btn active" onclick="switchStreamQuality('1080')">1080p FHD</button>
           <button class="quality-pill-btn" onclick="switchStreamQuality('720')">720p HD</button>
           <button class="quality-pill-btn" onclick="switchStreamQuality('480')">480p SD</button>
@@ -1307,9 +1424,9 @@
         <span>📥 Download Options:</span>
       </div>
 
-      <!-- Telegram Return Feedback -->
+      <!-- Telegram Return Feedback Notice -->
       <div class="tg-feedback-alert" id="tgFeedbackAlert">
-        <p>📢 <b>Didn't find the movie on Telegram?</b><br>If the movie wasn't available on Telegram, click <b>Request Movie</b> below and our admin will upload it shortly. Otherwise click Cancel.</p>
+        <p>📢 <b>Didn't find the movie on Telegram?</b><br>If you couldn't find the movie on Telegram, click the Request button below and the admin will upload it soon. Otherwise, click Cancel.</p>
         <div class="tg-alert-buttons">
           <button class="tg-cancel-btn" onclick="dismissTgFeedback()">Cancel ✕</button>
           <button class="tg-req-btn" onclick="sendAutoDetailRequest()">📩 Request Movie</button>
@@ -1321,7 +1438,7 @@
           Click the button below to unlock download links:
         </p>
         <button class="ad-step-btn" id="adStepBtn" onclick="handleAdUnlockStep()">
-          🚀 Unlock Download Links (Step 1/2)
+          🚀 Unlock Download Links in 1 Click (Step 1/2)
         </button>
       </div>
 
@@ -1329,42 +1446,53 @@
     </div>
   </div>
 
-  <!-- Telegram Notice Modal -->
+  <!-- Non-Sheet Movie Watch Full Movie Notice -->
+  <div class="request-modal" id="nonSheetWatchModal">
+    <div class="request-box" style="border-color: rgba(225, 29, 72, 0.6);">
+      <div style="font-size: 36px; margin-bottom: 6px;">🎬</div>
+      <h3 style="color:#facc15;">Video Not Uploaded Yet</h3>
+      <p style="font-size:13px; color:#e2e8f0; line-height:1.6; margin:12px 0 16px 0;">
+        Sorry! The video for this movie hasn't been uploaded to the site yet. However, you can watch it on our <b>Telegram</b> channel. Click below to unlock:
+      </p>
+      <button class="req-submit-btn" style="background: linear-gradient(135deg, #e11d48, #be123c);" onclick="goToUnlockFromWatchMsg()">
+        🔓 Click to Unlock
+      </button>
+      <button style="background:transparent; border:none; color:#94a3b8; margin-top:12px; cursor:pointer;" onclick="closeNonSheetWatchModal()">Close</button>
+    </div>
+  </div>
+
   <div class="request-modal" id="autoTelegramNoticeModal">
-    <div class="request-box" style="border-color:#facc15;">
-      <h3 style="color:#facc15;">⚠️ Telegram Movie Notice</h3>
-      <p style="font-size:13px; color:#e4e4e7; line-height:1.6; margin:12px 0;">
-        This movie can be accessed on our Telegram bot. If you don't find it there, please submit a request with the movie title and our admin will upload it!
+    <div class="request-box" style="border-color:#f59e0b;">
+      <h3 style="color:#f59e0b;">⚠️ Telegram Movie Notice</h3>
+      <p style="font-size:13px; color:#e2e8f0; line-height:1.6; margin:12px 0;">
+        Sorry, this movie is available on Telegram. If you can't find it there, please request it with the movie name to the admin. Click below to open on Telegram:
       </p>
       <button class="req-submit-btn" style="background: linear-gradient(135deg, #0284c7, #2563eb);" id="btnForwardTelegramBot">
-        ✈️ Open on Telegram (@IMDBReview_bot)
+        ✈️ Watch on Telegram (@IMDBReview_bot)
       </button>
-      <button style="background:transparent; border:none; color:#a1a1aa; margin-top:12px; cursor:pointer;" onclick="closeTelegramNoticeModal()">Close</button>
+      <button style="background:transparent; border:none; color:#94a3b8; margin-top:12px; cursor:pointer;" onclick="closeTelegramNoticeModal()">Close</button>
     </div>
   </div>
 
-  <!-- Most Searched Movies Modal -->
   <div class="request-modal" id="userSearchesModal">
     <div class="request-box" style="max-width: 400px;">
-      <h3>🔥 Most Searched Movies</h3>
-      <p style="font-size:11.5px; color:#a1a1aa;">Top searched English movies by users:</p>
+      <h3>🔥 Top User Searches</h3>
+      <p style="font-size:11.5px; color:#94a3b8;">Most searched movies list:</p>
       <div class="user-searches-list-wrap" id="userSearchesList"></div>
-      <button style="background:transparent; border:none; color:#a1a1aa; margin-top:14px; cursor:pointer; font-weight:bold;" onclick="closeUserSearchesModal()">Close ✕</button>
+      <button style="background:transparent; border:none; color:#94a3b8; margin-top:14px; cursor:pointer; font-weight:bold;" onclick="closeUserSearchesModal()">Close ✕</button>
     </div>
   </div>
 
-  <!-- Movie Request Modal -->
   <div class="request-modal" id="reqModal">
     <div class="request-box">
-      <h3>📩 Request an English Movie</h3>
-      <p style="font-size:12px; color:#cbd5e1;">Enter the English movie title you want. Poster and details will be sent to the admin.</p>
-      <input type="text" id="reqMovieInput" placeholder="Enter movie title & year (e.g. Gladiator 2024)...">
-      <button class="req-submit-btn" onclick="submitMovieRequest()">Submit Request 🚀</button>
-      <button style="background:transparent; border:none; color:#a1a1aa; margin-top:10px; cursor:pointer;" onclick="closeRequestModal()">Close</button>
+      <h3>📩 Send Movie Request</h3>
+      <p style="font-size:12px; color:#cbd5e1;">Enter the name of the movie you want to watch. Poster and details will be sent directly to the admin.</p>
+      <input type="text" id="reqMovieInput" placeholder="Enter movie name &amp; year...">
+      <button class="req-submit-btn" onclick="submitMovieRequest()">Send to Admin 🚀</button>
+      <button style="background:transparent; border:none; color:#94a3b8; margin-top:10px; cursor:pointer;" onclick="closeRequestModal()">Close</button>
     </div>
   </div>
 
-  <!-- Bottom Navigation -->
   <nav class="bottom-nav">
     <div class="nav-item active" onclick="goHome()">
       <span class="nav-icon">🏠</span>
@@ -1374,51 +1502,50 @@
       <span class="nav-icon">🔥</span>
       <span>Trending</span>
     </div>
-    <div class="nav-item" onclick="selectCategory('Action')">
-      <span class="nav-icon">💥</span>
-      <span>Action</span>
+    <div class="nav-item" onclick="selectCategory('Series')">
+      <span class="nav-icon">📺</span>
+      <span>Series</span>
     </div>
     <div class="nav-item" onclick="openRequestModal()">
       <span class="nav-icon">📩</span>
       <span>Request</span>
     </div>
-    <div class="nav-item" onclick="openUserSearchesModal()">
-      <span class="nav-icon">🔍</span>
-      <span>Searches</span>
+    <div class="nav-item" onclick="openNotificationNotice()">
+      <span class="nav-icon">🔔</span>
+      <span>Notice</span>
     </div>
   </nav>
 
   <script>
-    // Google Sheet ID (English Movies)
     const GOOGLE_SHEET_ID = "1oYFPmPANq7lh3aHdQv6uFlwgOjK8S0Zv2lq2QPXYStE";
     const TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8";
     const ADMIN_EMAIL = "blogor6@gmail.com";
-
-    // Smartlink URL (Sponsor Banner)
     const ENTRY_AD_URL = "https://directyp.org/4/4efb0f438c711d6932662cc00c8e4d56";
 
-    // Ad1 & Ad2 (Non-Sheet Movies + Automatic Fallback if Sheet Ad1/Ad2 is left empty)
-    const AD1_FALLBACK_URL = "https://asiafilm.org/4/c998294d6d6bf0c66ee377f41e144fa3";
-    const AD2_FALLBACK_URL = "https://asiafilm.org/4/f34d3f9acbc64053abc49fb11f845025";
+    const CUSTOM_TRAILER_API = "";
+
+    const NON_SHEET_AD1_URL = "https://asiafilm.org/4/a555ec6bc7d6af27618f9ba45943fffd";
+    const NON_SHEET_AD2_URL = "https://asiafilm.org/4/a555ec6bc7d6af27618f9ba45943fffd";
 
     const GENRE_MAP = {
       28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
       99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
       27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Sci-Fi",
-      10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
+      10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western",
+      10759: "Action & Adventure", 10762: "Kids", 10765: "Sci-Fi & Fantasy"
     };
 
-    const CATEGORY_TMDB_GENRE_ID = {
-      "Action": 28,
-      "Thriller": 53,
-      "Sci-Fi": 878,
-      "Horror": 27,
-      "Comedy": 35,
-      "Drama": 18
+    const ACCURATE_LANG_MAP = {
+      en: "English", hi: "Hindi", bn: "Bengali",
+      ta: "Tamil", te: "Telugu", ml: "Malayalam",
+      kn: "Kannada", ko: "Korean", ja: "Japanese",
+      zh: "Chinese", es: "Spanish", tr: "Turkish",
+      fr: "French", de: "German"
     };
 
     let allMovies = [];
     let pinnedMovies = [];
+    let englishMovies = [];
     let heroMovies = [];
     let currentHeroIndex = 0;
     let heroAutoTimer = null;
@@ -1428,7 +1555,7 @@
 
     const itemsPerPage = 21;
     const urlParams = new URLSearchParams(window.location.search);
-    let homePage = parseInt(urlParams.get('page')) || parseInt(localStorage.getItem('cinepulse_en_page')) || 1;
+    let homePage = parseInt(urlParams.get('page')) || parseInt(localStorage.getItem('cine_current_page')) || 1;
     let fullListPage = 1;
     let fullListCurrentMovies = [];
 
@@ -1484,13 +1611,17 @@
     }
     monitorSocialBarAd();
 
+    function closeNotice() {
+      document.getElementById('topWelcomeNotice').style.display = 'none';
+    }
+
     function handleImageError(img) {
       img.onerror = null;
-      img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100%" height="100%" fill="%2312131a"/><text x="50%" y="50%" fill="%23e11d48" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle" dy=".3em">English HD</text></svg>';
+      img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100%" height="100%" fill="%2312131a"/><text x="50%" y="50%" fill="%23e11d48" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="middle" dy=".3em">🎬 HD Movie</text></svg>';
     }
 
     function openSafeUrl(url) {
-      if (!url || url === '#' || !url.startsWith('http')) return;
+      if (!url || url === '#' || !/^https?:\/\//i.test(url)) return;
       if (tg && tg.openLink) {
         tg.openLink(url);
       } else {
@@ -1513,8 +1644,8 @@
         if (clean.includes('|')) {
           const parts = clean.split('|');
           results.push({ link: parts[0].trim(), label: parts[1].trim() });
-        } else if (clean.startsWith('http')) {
-          results.push({ link: clean, label: items.length > 1 ? `Link ${idx + 1}` : defaultLabel });
+        } else if (/^https?:\/\//i.test(clean)) {
+          results.push({ link: clean, label: items.length > 1 ? `Episode ${idx + 1}` : defaultLabel });
         }
       });
       return results;
@@ -1528,19 +1659,19 @@
     function recordUserSearchQuery(query) {
       if (!query || query.length < 2) return;
       let cleanQuery = query.trim();
-      let searchData = JSON.parse(localStorage.getItem('cinepulse_en_searches') || '{}');
+      let searchData = JSON.parse(localStorage.getItem('cine_user_searches') || '{}');
       searchData[cleanQuery] = (searchData[cleanQuery] || 0) + 1;
-      localStorage.setItem('cinepulse_en_searches', JSON.stringify(searchData));
+      localStorage.setItem('cine_user_searches', JSON.stringify(searchData));
     }
 
     function openUserSearchesModal() {
       const container = document.getElementById('userSearchesList');
       container.innerHTML = '';
-      const searchData = JSON.parse(localStorage.getItem('cinepulse_en_searches') || '{}');
+      const searchData = JSON.parse(localStorage.getItem('cine_user_searches') || '{}');
       const sortedQueries = Object.keys(searchData).sort((a, b) => searchData[b] - searchData[a]);
 
       if (sortedQueries.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#a1a1aa; padding:20px 0;">No search history found yet!</p>';
+        container.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:20px 0;">No search data found!</p>';
       } else {
         sortedQueries.forEach(query => {
           const item = document.createElement('div');
@@ -1552,7 +1683,7 @@
             handleSearch();
           };
           item.innerHTML = `
-            <span style="font-size:12.5px; font-weight:600; color:#fff;">🎬 ${query}</span>
+            <span style="font-size:12.5px; font-weight:700; color:#fff;">🎬 ${query}</span>
             <span class="search-count-pill">${searchData[query]} searches</span>
           `;
           container.appendChild(item);
@@ -1565,15 +1696,107 @@
       document.getElementById('userSearchesModal').style.display = 'none';
     }
 
-    function formatMovieDetailsHTML(rating, genre, quality, resolution, relDate) {
+    function formatMovieDetailsHTML(rating, genre, language, quality, resolution, relDate) {
       return `
         <div>⭐ <b>IMDb:</b> ${rating || '8.0'}/10</div>
-        <div>🎬 <b>Genre:</b> ${genre || 'Action, Thriller'}</div>
-        <div>🗣️ <b>Language:</b> English</div>
+        <div>🎬 <b>Genre:</b> ${genre || 'Action, Drama'}</div>
+        <div>🗣️ <b>Language:</b> ${language || 'English'}</div>
         <div>📺 <b>Quality:</b> ${quality || '1080p WEB-DL'}</div>
         <div>🖥️ <b>Resolution:</b> ${resolution || '1920x1080 FHD'}</div>
-        <div>📅 <b>Released:</b> ${relDate || '2026'}</div>
+        <div>📅 <b>Release Date:</b> ${relDate || '2026'}</div>
       `;
+    }
+
+    function detectAccurateLanguage(title, category, tmdbLang) {
+      const t = title.toLowerCase();
+      const c = category.toLowerCase();
+
+      if (t.includes('english') || c.includes('english') || c.includes('hollywood')) return "English";
+      if (t.includes('hindi') || c.includes('hindi') || c.includes('bollywood')) return "Hindi";
+      if (t.includes('bangla') || t.includes('bengali') || c.includes('bangla')) return "Bengali";
+      if (t.includes('tamil') || c.includes('tamil')) return "Tamil";
+      if (t.includes('telugu') || c.includes('telugu')) return "Telugu";
+
+      if (tmdbLang && ACCURATE_LANG_MAP[tmdbLang]) {
+        return ACCURATE_LANG_MAP[tmdbLang];
+      }
+
+      return "English";
+    }
+
+    function cleanTitleForSearch(rawTitle) {
+      return rawTitle
+        .replace(/\(\s*\d{4}\s*\)|\[\s*\d{4}\s*\]/g, '')
+        .replace(/\b(19\d{2}|20\d{2}|480p|720p|1080p|2160p|4k|hd|fhd|uhd|web-dl|webrip|hdrip|hdtv|cam|hdcam|dvdrip|bluray|brrip|x264|x265|hevc|aac|full\s*movie|dual\s*audio|multi\s*audio|hindi|bangla|bengali|tamil|telugu|malayalam|kannada|english|dubbed|subbed|esub|uncut|unrated|natok|movie|film)\b/gi, '')
+        .replace(/\b(season|episode|ep|s\d+|e\d+)\b.*$/gi, '')
+        .replace(/[-_|()[\]]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function normStr(s) {
+      return (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function scoreCandidate(cleanedQuery, extractedYear, item) {
+      const qNorm = normStr(cleanedQuery);
+      if (!qNorm) return -1;
+      const qWords = qNorm.split(' ').filter(Boolean);
+
+      const candidates = [item.title, item.name, item.original_title, item.original_name, item.trackName]
+        .map(normStr)
+        .filter(Boolean);
+
+      let bestTitleScore = -1;
+      for (const c of candidates) {
+        if (c === qNorm) {
+          bestTitleScore = Math.max(bestTitleScore, 100);
+        } else {
+          const cWords = c.split(' ').filter(Boolean);
+          const allQInC = qWords.every(w => cWords.includes(w));
+          const allCInQ = cWords.every(w => qWords.includes(w));
+          if (allQInC && cWords.length <= qWords.length + 3) {
+            bestTitleScore = Math.max(bestTitleScore, 70 - Math.abs(cWords.length - qWords.length) * 5);
+          } else if (allCInQ && qWords.length >= 2) {
+            bestTitleScore = Math.max(bestTitleScore, 55);
+          }
+        }
+      }
+
+      if (bestTitleScore < 0) return -1;
+
+      let totalScore = bestTitleScore;
+      const rel = item.release_date || item.first_air_date || item.releaseDate || '';
+      if (extractedYear && rel) {
+        const itemYear = parseInt(rel.split('-')[0], 10);
+        const targetYear = parseInt(extractedYear, 10);
+        if (itemYear === targetYear) totalScore += 50;
+        else if (Math.abs(itemYear - targetYear) <= 1) totalScore += 20;
+        else if (Math.abs(itemYear - targetYear) > 2) return -1;
+      }
+
+      if (item.original_language === 'en') totalScore += 10;
+      totalScore += Math.min(item.popularity || 0, 20);
+      return totalScore;
+    }
+
+    function findBestTmdbMatch(results, cleanedTitle, extractedYear, isBanglaCat) {
+      const validMedia = (results || []).filter(item => item.media_type === 'movie' || item.media_type === 'tv');
+      if (validMedia.length === 0) return null;
+
+      let bestItem = null;
+      let bestScore = -1;
+
+      for (const item of validMedia) {
+        if (isBanglaCat && item.original_language === 'en') continue;
+        const score = scoreCandidate(cleanedTitle, extractedYear, item);
+        if (score > bestScore) {
+          bestScore = score;
+          bestItem = item;
+        }
+      }
+
+      return bestScore >= 45 ? bestItem : null;
     }
 
     async function completeSheetMovieDetails(movie) {
@@ -1582,22 +1805,21 @@
       const yearMatch = rawTitle.match(/\b(19\d{2}|20\d{2})\b/);
       if (yearMatch) extractedYear = yearMatch[1];
 
-      let cleanTitle = rawTitle.replace(/\(\s*\d{4}\s*\)/g, '').replace(/\[\s*\d{4}\s*\]/g, '').replace(/\b(19\d{2}|20\d{2})\b/g, '').replace(/\benglish\b/gi, '').trim();
+      let cleanTitle = cleanTitleForSearch(rawTitle);
       if (!cleanTitle) cleanTitle = rawTitle;
 
       try {
-        let queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(cleanTitle)}`;
-        if (extractedYear) queryUrl += `&year=${extractedYear}`;
+        const queryUrl = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(cleanTitle)}`;
         const res = await fetch(queryUrl);
         const data = await res.json();
         
-        let bestMatch = null;
-        if (data.results && data.results.length > 0) {
-          bestMatch = data.results.find(item => item.original_language === 'en') || data.results[0];
-        }
+        const isBanglaCat = movie.category.toLowerCase().includes('bangla');
+        let bestMatch = findBestTmdbMatch(data.results, cleanTitle, extractedYear, isBanglaCat);
 
         if (bestMatch) {
           movie.tmdbId = bestMatch.id;
+          movie.mediaType = bestMatch.media_type || (bestMatch.first_air_date ? 'tv' : 'movie');
+          movie.originalLanguage = bestMatch.original_language || 'en';
 
           if (!movie.image || movie.image.length < 5) {
             movie.image = bestMatch.poster_path ? `https://image.tmdb.org/t/p/w500${bestMatch.poster_path}` : '';
@@ -1607,25 +1829,33 @@
           }
 
           const ratingVal = (bestMatch.vote_average && bestMatch.vote_average > 0) ? bestMatch.vote_average.toFixed(1) : '7.8';
-          const genres = (bestMatch.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(' · ') || 'Action · Thriller';
-          const relDate = bestMatch.release_date || (extractedYear ? `${extractedYear}-01-01` : '2026');
+          const genres = (bestMatch.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(' · ') || 'Action · Drama';
+          
+          const actualLang = detectAccurateLanguage(rawTitle, movie.category, bestMatch.original_language);
+          const relDate = bestMatch.release_date || bestMatch.first_air_date || (extractedYear ? `${extractedYear}-01-01` : '2026');
 
           movie.year = relDate.split('-')[0] || '2026';
           movie.genreText = genres;
-          movie.overview = bestMatch.overview || 'Stream and download this English HD movie online on CinePulse.';
-          movie.details = formatMovieDetailsHTML(ratingVal, genres.replace(/ · /g, ', '), '1080p WEB-DL', '1920x1080 FHD', relDate);
+          movie.overview = bestMatch.overview || `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+          movie.details = formatMovieDetailsHTML(ratingVal, genres.replace(/ · /g, ', '), actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         } else {
+          movie.tmdbId = null;
+          movie.originalLanguage = 'en';
+          const actualLang = detectAccurateLanguage(rawTitle, movie.category, 'en');
           const relDate = extractedYear ? `${extractedYear}-05-15` : '2026';
           movie.year = extractedYear || '2026';
-          movie.genreText = 'Action · Thriller';
-          movie.overview = 'Watch and download this HD English movie online on CinePulse.';
-          movie.details = formatMovieDetailsHTML('8.0', 'Action, Thriller', '1080p WEB-DL', '1920x1080 FHD', relDate);
+          movie.genreText = 'Action · Drama';
+          movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+          movie.details = formatMovieDetailsHTML('8.0', 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         }
       } catch (e) {
+        movie.tmdbId = null;
+        movie.originalLanguage = 'en';
+        const actualLang = detectAccurateLanguage(rawTitle, movie.category, 'en');
         movie.year = extractedYear || '2026';
-        movie.genreText = 'Action · Thriller';
-        movie.overview = 'Watch and download this HD English movie online on CinePulse.';
-        movie.details = formatMovieDetailsHTML('8.0', 'Action, Thriller', '1080p WEB-DL', '1920x1080 FHD', '2026');
+        movie.genreText = 'Action · Drama';
+        movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+        movie.details = formatMovieDetailsHTML('8.0', 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', '2026');
       }
 
       if (!movie.image) {
@@ -1635,56 +1865,13 @@
       return movie;
     }
 
-    function mapTmdbEnglishMovie(item) {
-      const releaseDate = item.release_date || '2026';
-      const year = releaseDate ? releaseDate.split('-')[0] : '2026';
-      const titleName = item.title || item.original_title;
-      const ratingVal = (item.vote_average && item.vote_average > 0) ? item.vote_average.toFixed(1) : '7.5';
-      const genres = (item.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(' · ') || 'Action · Drama';
-
-      return {
-        id: item.id,
-        tmdbId: item.id,
-        title: titleName,
-        category: genres,
-        genreText: genres,
-        year: year,
-        overview: item.overview || 'Watch and download this HD English movie online on CinePulse.',
-        rating: ratingVal,
-        numericRating: parseFloat(ratingVal),
-        image: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-        backdrop: `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}`,
-        badge: 'HD',
-        details: formatMovieDetailsHTML(ratingVal, genres.replace(/ · /g, ', '), '1080p WEB-DL', '1920x1080 FHD', releaseDate),
-        links: [],
-        ad1: AD1_FALLBACK_URL,
-        ad2: AD2_FALLBACK_URL,
-        pinned: false,
-        trending: item.popularity > 50,
-        isFromSheet: false
-      };
-    }
-
-    async function fetchEnglishMoviesFromTMDB(endpoint) {
-      try {
-        const separator = endpoint.includes('?') ? '&' : '?';
-        const url = `https://api.themoviedb.org/3${endpoint}${separator}api_key=${TMDB_API_KEY}&with_original_language=en&page=1`;
-        const res = await fetch(url);
-        const data = await res.json();
-        return (data.results || [])
-          .filter(item => item.poster_path && item.original_language === 'en')
-          .map(mapTmdbEnglishMovie);
-      } catch (e) {
-        return [];
-      }
-    }
-
     function fetchMoviesFromSheet() {
-      const cached = localStorage.getItem('cinepulse_en_movies_cache_v3');
+      const cached = localStorage.getItem('cine_movies_cache_en_v1');
       if (cached) {
         try {
           allMovies = JSON.parse(cached);
           pinnedMovies = allMovies.filter(m => m.pinned);
+          englishMovies = allMovies.filter(m => m.originalLanguage === 'en' || m.category.toLowerCase().includes('english') || m.category.toLowerCase().includes('hollywood') || m.details?.toLowerCase().includes('english'));
           initHeroSlider(allMovies);
           renderContinueWatching();
           renderTrendingSlider(allMovies);
@@ -1725,21 +1912,19 @@
             }
 
             const rawImg = getCellVal(c, 3);
+            const ad1 = getCellVal(c, 4) || ENTRY_AD_URL;
+            const ad2 = getCellVal(c, 5) || ENTRY_AD_URL;
 
-            // শিটে Ad1/Ad2 থাকলে সেগুলো নিবে, আর খালি থাকলে বা ভুলে গেলে অটোমেটিক Ad1/Ad2 বসিয়ে দিবে
-            const rawAd1 = getCellVal(c, 4);
-            const rawAd2 = getCellVal(c, 5);
-            const ad1 = (rawAd1 && rawAd1.startsWith('http')) ? rawAd1 : AD1_FALLBACK_URL;
-            const ad2 = (rawAd2 && rawAd2.startsWith('http')) ? rawAd2 : AD2_FALLBACK_URL;
+            const isSeries = categoryVal.toLowerCase().includes('series') || titleStr.toLowerCase().includes('season');
 
             const linksG = parseMultipleLinks(getCellVal(c, 6), "📥 Download 480p [SD]");
             const linksH = parseMultipleLinks(getCellVal(c, 7), "📥 Download 720p [HD]");
             const linksI = parseMultipleLinks(getCellVal(c, 8), "📥 Download 1080p [FHD]");
             const linksJ = parseMultipleLinks(getCellVal(c, 9), "⚡ Download Fast Server");
-            const linksM = parseMultipleLinks(getCellVal(c, 12), "📥 Direct Link");
+            const linksM = parseMultipleLinks(getCellVal(c, 12), "🎬 Episode");
             const allParsedLinks = [...linksG, ...linksH, ...linksI, ...linksJ, ...linksM];
 
-            const badgeTag = getCellVal(c, 10) || 'HD';
+            const badgeTag = getCellVal(c, 10) || (isSeries ? 'SERIES' : '1080p');
             const castNames = getCellVal(c, 13);
             const trailerLink = getCellVal(c, 14);
             const customWatchLink = getCellVal(c, 15);
@@ -1749,8 +1934,7 @@
               id: i + 1,
               title: titleStr,
               category: categoryVal,
-              rating: ratingVal,
-              numericRating: parseFloat(ratingVal) || 8.0,
+              rating: `⭐ ${ratingVal}`,
               image: rawImg,
               backdrop: rawImg,
               ad1: ad1,
@@ -1760,6 +1944,7 @@
               links: allParsedLinks,
               pinned: isPinned,
               trending: isTrending,
+              isSeries: isSeries,
               castNames: castNames,
               trailerUrl: trailerLink,
               customWatchUrl: customWatchLink,
@@ -1771,33 +1956,23 @@
 
           rawMovies.reverse();
 
-          if (rawMovies.length > 0) {
-            for (let m of rawMovies) {
-              await completeSheetMovieDetails(m);
-            }
-            allMovies = rawMovies;
-            localStorage.setItem('cinepulse_en_movies_cache_v3', JSON.stringify(allMovies));
-          } else {
-            allMovies = await fetchEnglishMoviesFromTMDB('/discover/movie?sort_by=popularity.desc&vote_count.gte=20');
+          for (let m of rawMovies) {
+            await completeSheetMovieDetails(m);
           }
 
+          allMovies = rawMovies;
           pinnedMovies = allMovies.filter(m => m.pinned);
+          englishMovies = allMovies.filter(m => m.originalLanguage === 'en' || m.category.toLowerCase().includes('english') || m.category.toLowerCase().includes('hollywood') || m.details?.toLowerCase().includes('english'));
+
+          localStorage.setItem('cine_movies_cache_en_v1', JSON.stringify(allMovies));
+
           initHeroSlider(allMovies);
           renderContinueWatching();
           renderTrendingSlider(allMovies);
           renderHomeSections();
           checkDirectMovieLink();
         })
-        .catch(async err => {
-          console.error(err);
-          if (allMovies.length === 0) {
-            allMovies = await fetchEnglishMoviesFromTMDB('/discover/movie?sort_by=popularity.desc&vote_count.gte=20');
-            initHeroSlider(allMovies);
-            renderContinueWatching();
-            renderTrendingSlider(allMovies);
-            renderHomeSections();
-          }
-        });
+        .catch(err => console.error(err));
     }
 
     /* Hero Banner Slider Logic */
@@ -1828,11 +2003,11 @@
       const m = heroMovies[currentHeroIndex];
       if (!m) return;
       document.getElementById('heroBgImg').src = m.backdrop || m.image;
-      document.getElementById('heroTypeTag').innerText = `ENGLISH MOVIE · ${m.badge || 'HD'}`;
+      document.getElementById('heroTypeTag').innerText = m.isSeries ? `SERIES · ${m.badge || 'HD'}` : `MOVIE · ${m.badge || 'HD'}`;
       document.getElementById('heroTitle').innerText = m.title;
       document.getElementById('heroRatingPill').innerText = `★ ${String(m.rating).replace('⭐', '').trim()}`;
-      document.getElementById('heroGenresText').innerText = m.genreText || 'Action · Thriller';
-      document.getElementById('heroDescText').innerText = m.overview || 'Stream and download this English HD movie on CinePulse.';
+      document.getElementById('heroGenresText').innerText = m.genreText || m.category || 'HD Movie';
+      document.getElementById('heroDescText').innerText = m.overview || 'Watch & Download HD Movie on CineVibeBD.';
 
       document.querySelectorAll('.hero-dot').forEach((d, idx) => {
         d.classList.toggle('active', idx === currentHeroIndex);
@@ -1863,33 +2038,32 @@
     /* Continue Watching Logic */
     function saveToContinueWatching(movie) {
       if (!movie) return;
-      let list = JSON.parse(localStorage.getItem('cinepulse_en_cw') || '[]');
+      let list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
       list = list.filter(item => item.id !== movie.id);
-      list.unshift({
-        id: movie.id,
-        title: movie.title,
-        image: movie.image,
-        rating: movie.rating,
-        year: movie.year || '2026',
-        badge: movie.badge || 'HD'
-      });
+      list.unshift(movie);
       list = list.slice(0, 10);
-      localStorage.setItem('cinepulse_en_cw', JSON.stringify(list));
+      localStorage.setItem('cinevibebd_cw', JSON.stringify(list));
       renderContinueWatching();
     }
 
     function removeContinueWatching(id, event) {
       event.stopPropagation();
-      let list = JSON.parse(localStorage.getItem('cinepulse_en_cw') || '[]');
+      let list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
       list = list.filter(item => item.id !== id);
-      localStorage.setItem('cinepulse_en_cw', JSON.stringify(list));
+      localStorage.setItem('cinevibebd_cw', JSON.stringify(list));
       renderContinueWatching();
+    }
+
+    function clearContinueWatching() {
+      localStorage.removeItem('cinevibebd_cw');
+      renderContinueWatching();
+      if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
     }
 
     function renderContinueWatching() {
       const block = document.getElementById('continueWatchingBlock');
       const row = document.getElementById('continueWatchingRow');
-      const list = JSON.parse(localStorage.getItem('cinepulse_en_cw') || '[]');
+      const list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
 
       if (list.length === 0) {
         block.style.display = 'none';
@@ -1898,7 +2072,8 @@
 
       block.style.display = 'block';
       row.innerHTML = list.map(m => {
-        const cleanRate = String(m.rating).replace('⭐', '').trim();
+        const cleanRate = String(m.rating || '8.0').replace('⭐', '').trim();
+        const yearStr = m.year || '2026';
         return `
           <div class="movie-card" onclick="openCineDetail(${m.id})">
             <div class="movie-poster-wrap">
@@ -1908,7 +2083,7 @@
             </div>
             <div class="movie-info">
               <div class="movie-title" title="${m.title}">${m.title}</div>
-              <div class="movie-submeta">${m.year || '2026'} · Movie</div>
+              <div class="movie-submeta">${yearStr} · ${m.isSeries ? 'Series' : 'Movie'}</div>
             </div>
           </div>
         `;
@@ -1916,21 +2091,23 @@
     }
 
     function createMovieCardHTML(m) {
+      const pinTag = m.pinned ? '<div class="pin-badge">📌</div>' : '';
+      const seriesBadgeClass = m.isSeries ? 'series-badge' : '';
       const posterSrc = m.image ? m.image : 'https://via.placeholder.com/300x450/12131a/e11d48?text=' + encodeURIComponent(m.title);
       const cleanRate = String(m.rating || '8.0').replace('⭐', '').trim();
       const yearStr = m.year || '2026';
-      const badgeLabel = m.badge || 'HD';
 
       return `
         <div class="movie-card ${m.pinned ? 'is-pinned' : ''}" onclick="openCineDetail(${m.id})">
+          ${pinTag}
           <div class="movie-poster-wrap">
             <div class="card-rating-badge"><span>★</span> ${cleanRate}</div>
-            <span class="quality-badge ${m.pinned ? 'pinned-tag' : ''}">${badgeLabel}</span>
+            ${m.badge ? `<span class="quality-badge ${seriesBadgeClass}">${m.badge}</span>` : ''}
             <img src="${posterSrc}" alt="${m.title}" loading="lazy" onerror="handleImageError(this)">
           </div>
           <div class="movie-info">
             <div class="movie-title" title="${m.title}">${m.title}</div>
-            <div class="movie-submeta">${yearStr} · Movie</div>
+            <div class="movie-submeta">${yearStr} · ${m.isSeries ? 'Series' : 'Movie'}</div>
           </div>
         </div>
       `;
@@ -1946,45 +2123,55 @@
         pinnedBlock.style.display = 'none';
       }
 
+      const englishBlock = document.getElementById('englishSectionBlock');
+      const englishGrid = document.getElementById('englishMoviesGrid');
+      if (englishMovies.length > 0) {
+        englishBlock.style.display = 'block';
+        englishGrid.innerHTML = englishMovies.slice(0, 10).map(createMovieCardHTML).join('');
+      } else {
+        englishBlock.style.display = 'none';
+      }
+
       renderRecentMovies();
     }
 
     function renderRecentMovies() {
       const recentGrid = document.getElementById('recentMoviesGrid');
       const pinnedBlock = document.getElementById('pinnedSectionBlock');
+      const englishBlock = document.getElementById('englishSectionBlock');
       const trendingSec = document.getElementById('trendingSection');
       const heroSec = document.getElementById('heroBannerSection');
       const cwBlock = document.getElementById('continueWatchingBlock');
 
       if (homePage > 1) {
         if (pinnedBlock) pinnedBlock.style.display = 'none';
+        if (englishBlock) englishBlock.style.display = 'none';
         if (trendingSec) trendingSec.style.display = 'none';
         if (heroSec) heroSec.style.display = 'none';
         if (cwBlock) cwBlock.style.display = 'none';
-        document.getElementById('recentSectionBlock').style.marginTop = '70px';
+        document.getElementById('homeSectionsContainer').style.paddingTop = '65px';
       } else {
         if (heroSec) heroSec.style.display = 'block';
-        document.getElementById('recentSectionBlock').style.marginTop = '0';
+        document.getElementById('homeSectionsContainer').style.paddingTop = '0';
         renderContinueWatching();
         if (pinnedMovies.length > 0) pinnedBlock.style.display = 'block';
+        if (englishMovies.length > 0) englishBlock.style.display = 'block';
         if (allMovies.some(m => m.trending || m.pinned)) trendingSec.style.display = 'block';
-      }
-
-      if (allMovies.length === 0) {
-        recentGrid.innerHTML = '<div style="grid-column: span 3; text-align: center; padding: 40px 10px; color: #a1a1aa;">No English movies found!</div>';
-        document.getElementById('homePaginationBar').style.display = 'none';
-        return;
       }
 
       const start = (homePage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
       const paged = allMovies.slice(start, end);
 
-      recentGrid.innerHTML = paged.map(createMovieCardHTML).join('');
+      if (paged.length === 0) {
+        recentGrid.innerHTML = '<div style="grid-column: span 3; text-align: center; padding: 40px 10px; color: #a1a1aa; font-size: 14px;">No movies found yet.</div>';
+      } else {
+        recentGrid.innerHTML = paged.map(createMovieCardHTML).join('');
+      }
 
       renderPagination(allMovies.length, homePage, 'homePaginationBar', (p) => {
         homePage = p;
-        localStorage.setItem('cinepulse_en_page', p);
+        localStorage.setItem('cine_current_page', p);
         const newUrl = window.location.pathname + '?page=' + p;
         window.history.replaceState({ path: newUrl }, '', newUrl);
 
@@ -1993,23 +2180,21 @@
       });
     }
 
-    async function openSeeAll(type) {
+    function openSeeAll(type) {
       document.getElementById('heroBannerSection').style.display = 'none';
       document.getElementById('homeSectionsContainer').style.display = 'none';
       document.getElementById('fullListViewBlock').style.display = 'block';
       fullListPage = 1;
 
       if (type === 'pinned') {
-        document.getElementById('fullViewTitle').innerText = '📌 Pinned English Movies';
+        document.getElementById('fullViewTitle').innerText = '📌 Pinned Collections';
         fullListCurrentMovies = [...pinnedMovies];
+      } else if (type === 'english') {
+        document.getElementById('fullViewTitle').innerText = '🎬 English & Hollywood Collections';
+        fullListCurrentMovies = [...englishMovies];
       } else if (type === 'trending') {
-        document.getElementById('fullViewTitle').innerText = '🔥 Trending English Movies';
-        let sheetTrending = allMovies.filter(m => m.trending || m.pinned);
-        if (sheetTrending.length > 0) {
-          fullListCurrentMovies = sheetTrending;
-        } else {
-          fullListCurrentMovies = await fetchEnglishMoviesFromTMDB('/discover/movie?sort_by=popularity.desc&vote_count.gte=50');
-        }
+        document.getElementById('fullViewTitle').innerText = '🔥 Trending & Featured';
+        fullListCurrentMovies = allMovies.filter(m => m.trending || m.pinned);
       }
 
       renderFullListPage();
@@ -2021,7 +2206,7 @@
       grid.innerHTML = '';
 
       if (fullListCurrentMovies.length === 0) {
-        grid.innerHTML = '<p style="grid-column: span 3; text-align: center; color: #a1a1aa; padding: 40px;">No English movies found!</p>';
+        grid.innerHTML = '<p style="grid-column: span 3; text-align: center; color: #94a3b8; padding: 40px;">No movies found!</p>';
         document.getElementById('fullListPaginationBar').style.display = 'none';
         return;
       }
@@ -2046,11 +2231,11 @@
       document.getElementById('homeSectionsContainer').style.display = 'block';
       document.getElementById('searchBarPanel').classList.remove('open');
       homePage = 1;
-      localStorage.setItem('cinepulse_en_page', 1);
+      localStorage.setItem('cine_current_page', 1);
       window.history.replaceState({}, '', window.location.pathname);
       renderRecentMovies();
       document.getElementById('searchInput').value = '';
-      selectCategoryPill('Home');
+      selectCategoryPill('All');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -2093,18 +2278,16 @@
       const container = document.getElementById('trendingList');
       const section = document.getElementById('trendingSection');
       const trendingItems = list.filter(m => m.trending || m.pinned);
-      const displayList = trendingItems.length > 0 ? trendingItems : list.slice(0, 10);
 
-      if (displayList.length === 0) {
+      if (trendingItems.length === 0) {
         section.style.display = 'none';
         return;
       }
 
       section.style.display = 'block';
-      container.innerHTML = displayList.map(createMovieCardHTML).join('');
+      container.innerHTML = trendingItems.map(createMovieCardHTML).join('');
     }
 
-    /* English-only Movie Search */
     let searchDebounce;
     function handleSearch() {
       clearTimeout(searchDebounce);
@@ -2118,7 +2301,7 @@
         document.getElementById('heroBannerSection').style.display = 'none';
         document.getElementById('homeSectionsContainer').style.display = 'none';
         document.getElementById('fullListViewBlock').style.display = 'block';
-        document.getElementById('fullViewTitle').innerText = `Search: "${q}"`;
+        document.getElementById('fullViewTitle').innerText = `Search results for "${q}":`;
         fullListPage = 1;
 
         let searchYear = "";
@@ -2128,7 +2311,6 @@
         let cleanQuery = q.replace(/\b(19\d{2}|20\d{2})\b/g, '').trim();
         if (!cleanQuery) cleanQuery = q;
 
-        // 1. Search Google Sheet first
         const localMatches = allMovies.filter(m => 
           m.title.toLowerCase().includes(q.toLowerCase()) || 
           m.title.toLowerCase().includes(cleanQuery.toLowerCase())
@@ -2140,22 +2322,55 @@
         } else {
           recordUserSearchQuery(q);
 
-          // 2. Search TMDB strictly for English movies
           try {
-            let tmdbQueryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(cleanQuery)}`;
+            let tmdbQueryUrl = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(cleanQuery)}`;
             if (searchYear) tmdbQueryUrl += `&year=${searchYear}`;
 
             let res = await fetch(tmdbQueryUrl);
             let data = await res.json();
 
             if (!data.results || data.results.length === 0) {
-              res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(cleanQuery)}`);
+              res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(cleanQuery)}`);
               data = await res.json();
             }
+            
+            let results = (data.results || []).filter(item => (item.media_type === 'movie' || item.media_type === 'tv') && item.poster_path).map((item) => {
+              const isTv = item.media_type === 'tv' || !!item.first_air_date;
+              const releaseDate = item.release_date || item.first_air_date || (searchYear ? `${searchYear}-01-01` : '2026');
+              const year = releaseDate ? releaseDate.split('-')[0] : '2026';
+              const titleName = item.title || item.name;
+              const ratingVal = (item.vote_average && item.vote_average > 0) ? item.vote_average.toFixed(1) : '7.5';
+              const genres = (item.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(', ') || 'Action, Drama';
+              const actualLang = ACCURATE_LANG_MAP[item.original_language] || "English";
 
-            let enOnly = (data.results || []).filter(item => item.poster_path && item.original_language === 'en');
-            fullListCurrentMovies = enOnly.map(mapTmdbEnglishMovie);
+              return {
+                id: item.id,
+                tmdbId: item.id,
+                mediaType: isTv ? 'tv' : 'movie',
+                originalLanguage: item.original_language || 'en',
+                title: titleName,
+                category: isTv ? 'Series' : 'Movie',
+                rating: `⭐ ${ratingVal}`,
+                year: year,
+                overview: item.overview || `${actualLang} · Watch & Download HD Movie`,
+                image: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                backdrop: `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}`,
+                badge: isTv ? 'SERIES' : `${year} HD`,
+                details: formatMovieDetailsHTML(ratingVal, genres, actualLang, '1080p WEB-DL', '1920x1080 FHD', releaseDate),
+                links: [],
+                ad1: NON_SHEET_AD1_URL,
+                ad2: NON_SHEET_AD2_URL,
+                isSeries: isTv,
+                isFromSheet: false
+              };
+            });
+
+            // Prioritize English-language results first
+            results.sort((a, b) => (b.originalLanguage === 'en' ? 1 : 0) - (a.originalLanguage === 'en' ? 1 : 0));
+
+            fullListCurrentMovies = results;
             renderFullListPage();
+
           } catch (err) {
             fullListCurrentMovies = [];
             renderFullListPage();
@@ -2165,13 +2380,15 @@
     }
 
     function openCineDetail(id) {
+      const cwList = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
       currentMovie = allMovies.find(m => m.id === id) ||
                      fullListCurrentMovies.find(m => m.id === id) ||
-                     heroMovies.find(m => m.id === id);
+                     heroMovies.find(m => m.id === id) ||
+                     cwList.find(m => m.id === id);
       if (!currentMovie) return;
 
       previousScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      localStorage.setItem('cinepulse_en_last_id', id);
+      localStorage.setItem('last_opened_id', id);
       saveToContinueWatching(currentMovie);
 
       const posterSrc = currentMovie.image || 'https://via.placeholder.com/300';
@@ -2180,12 +2397,13 @@
       document.getElementById('cinePosterImg').src = posterSrc;
 
       document.getElementById('cineMovieTitle').innerText = currentMovie.title;
-      document.getElementById('cineRatingChip').innerText = `⭐ ${String(currentMovie.rating).replace('⭐', '').trim()}`;
-      document.getElementById('cineQualityChip').innerText = currentMovie.badge || 'HD';
+      document.getElementById('cineRatingChip').innerText = currentMovie.rating;
+      document.getElementById('cineQualityChip').innerText = currentMovie.badge;
+      
       document.getElementById('cineDetailsDescBox').innerHTML = currentMovie.details;
 
+      resetPlayerElements();
       document.getElementById('cinePlayerWrap').style.display = 'none';
-      document.getElementById('cineVideoPlayer').src = '';
 
       loadCastInfoWithRealPhotos(currentMovie);
 
@@ -2211,7 +2429,7 @@
       }
 
       document.getElementById('adStepBtn').disabled = false;
-      document.getElementById('adStepBtn').innerText = '🚀 Unlock Download Links (Step 1/2)';
+      document.getElementById('adStepBtn').innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
       document.getElementById('adStepNotice').innerText = 'Click the button below to unlock download links:';
 
       const detailView = document.getElementById('cineDetailView');
@@ -2225,10 +2443,33 @@
       }
     }
 
+    function resetPlayerElements() {
+      const iframePlayer = document.getElementById('cineVideoPlayer');
+      const directVideo = document.getElementById('cineDirectVideo');
+      const statusMsg = document.getElementById('trailerStatusMsg');
+      const externalBar = document.getElementById('directExternalBar');
+      const qualityBar = document.getElementById('qualitySwitchBar');
+
+      if (iframePlayer) {
+        iframePlayer.src = '';
+        iframePlayer.style.display = 'block';
+      }
+      if (directVideo) {
+        directVideo.onerror = null;
+        try { directVideo.pause(); } catch(e) {}
+        directVideo.removeAttribute('src');
+        directVideo.load();
+        directVideo.style.display = 'none';
+      }
+      if (statusMsg) statusMsg.style.display = 'none';
+      if (externalBar) externalBar.style.display = 'none';
+      if (qualityBar) qualityBar.style.display = 'flex';
+    }
+
     function closeCineDetail() {
-      localStorage.removeItem('cinepulse_en_last_id');
+      localStorage.removeItem('last_opened_id');
       clearInterval(stepCountdownTimer);
-      document.getElementById('cineVideoPlayer').src = '';
+      resetPlayerElements();
       document.getElementById('cineDetailView').style.display = 'none';
       if (tg?.BackButton) tg.BackButton.hide();
 
@@ -2261,9 +2502,12 @@
       }
 
       let tmdbId = movie.tmdbId;
+      let mediaType = movie.mediaType || (movie.isSeries ? 'tv' : 'movie');
+
       if (tmdbId) {
         try {
-          const res = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/credits?api_key=${TMDB_API_KEY}`);
+          const endpoint = mediaType === 'tv' ? 'tv' : 'movie';
+          const res = await fetch(`https://api.themoviedb.org/3/${endpoint}/${tmdbId}/credits?api_key=${TMDB_API_KEY}`);
           const data = await res.json();
           const cast = (data.cast || []).filter(c => c.profile_path).slice(0, 10);
           
@@ -2304,15 +2548,15 @@
       const notice = document.getElementById('adStepNotice');
 
       if (currentUnlockStep === 1) {
-        const ad1Link = (currentMovie.ad1 && currentMovie.ad1.startsWith('http'))
-          ? currentMovie.ad1
-          : AD1_FALLBACK_URL;
+        const ad1Link = currentMovie.isFromSheet
+          ? (currentMovie.ad1 || ENTRY_AD_URL)
+          : (currentMovie.ad1 || NON_SHEET_AD1_URL);
         openSafeUrl(ad1Link);
 
         let timeLeft = 10;
         btn.disabled = true;
         btn.innerText = `⏳ Please wait (${timeLeft}s)...`;
-        notice.innerText = 'Ad opened! Please wait 10 seconds...';
+        notice.innerText = 'Ad opened. Please wait 10 seconds...';
 
         stepCountdownTimer = setInterval(() => {
           timeLeft--;
@@ -2322,21 +2566,21 @@
             clearInterval(stepCountdownTimer);
             currentUnlockStep = 2;
             btn.disabled = false;
-            btn.innerText = '🚀 Confirm Step 2 (Step 2/2)';
-            notice.innerText = 'Step 1 complete! Click below to continue:';
+            btn.innerText = '🚀 Confirm on 2nd Click (Step 2/2)';
+            notice.innerText = 'Step 1 completed! Now click the button below:';
           }
         }, 1000);
 
       } else if (currentUnlockStep === 2) {
-        const ad2Link = (currentMovie.ad2 && currentMovie.ad2.startsWith('http'))
-          ? currentMovie.ad2
-          : AD2_FALLBACK_URL;
+        const ad2Link = currentMovie.isFromSheet
+          ? (currentMovie.ad2 || ENTRY_AD_URL)
+          : (currentMovie.ad2 || NON_SHEET_AD2_URL);
         openSafeUrl(ad2Link);
 
         let timeLeft = 10;
         btn.disabled = true;
         btn.innerText = `⏳ Please wait (${timeLeft}s)...`;
-        notice.innerText = 'Ad opened! Please wait 10 seconds to view download links...';
+        notice.innerText = 'Ad opened. Download links will appear in 10 seconds...';
 
         stepCountdownTimer = setInterval(() => {
           timeLeft--;
@@ -2346,8 +2590,8 @@
             clearInterval(stepCountdownTimer);
             currentUnlockStep = 3;
             btn.disabled = false;
-            btn.innerText = '🔓 View Download Links';
-            notice.innerText = 'All steps complete! Click below to view download links:';
+            btn.innerText = '🔓 View Download Qualities (3rd Click)';
+            notice.innerText = 'All steps completed! Click below to view quality links:';
           }
         }, 1000);
 
@@ -2376,13 +2620,14 @@
         linksToRender = [
           { label: "📥 1080p Full HD [High Speed Server]", link: `https://dl.vidsrc.vip/movie/${id}` },
           { label: "📥 720p HD [Fast Direct MP4 Stream]", link: `https://webtor.io/search?query=${cleanTitle}` },
-          { label: "📥 480p SD [Mobile Friendly • 450 MB]", link: `https://dl.vidsrc.vip/movie/${id}` }
+          { label: "📥 480p SD [Mobile Friendly • 450 MB]", link: `https://dl.vidsrc.vip/movie/${id}` },
+          { label: "✈️ Telegram Direct File (1-Click Download)", link: `https://t.me/supersp49` }
         ];
       }
 
       linksToRender.forEach(q => {
         let finalLink = q.link.trim();
-        if (!finalLink.startsWith('http')) {
+        if (!/^https?:\/\//i.test(finalLink)) {
           finalLink = 'https://' + finalLink;
         }
 
@@ -2413,7 +2658,7 @@
       clearInterval(stepCountdownTimer);
       const btn = document.getElementById('adStepBtn');
       btn.disabled = false;
-      btn.innerText = '🚀 Unlock Download Links (Step 1/2)';
+      btn.innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
       document.getElementById('adStepNotice').innerText = 'Click the button below to unlock download links:';
     }
 
@@ -2421,11 +2666,11 @@
       if (!currentMovie) return;
       
       const reqPayload = {
-        Subject: `🚨 English Movie Request (CinePulse): ${currentMovie.title}`,
-        "Movie Title": currentMovie.title,
-        "Poster URL": currentMovie.image || "N/A",
+        Subject: `🚨 Auto Movie Request: ${currentMovie.title}`,
+        "Movie Name": currentMovie.title,
+        "Poster Image": currentMovie.image || "N/A",
         "Rating": currentMovie.rating,
-        "Timestamp": new Date().toLocaleString()
+        "Date & Time": new Date().toLocaleString()
       };
 
       try {
@@ -2444,10 +2689,10 @@
       clearInterval(stepCountdownTimer);
       const btn = document.getElementById('adStepBtn');
       btn.disabled = false;
-      btn.innerText = '🚀 Unlock Download Links (Step 1/2)';
+      btn.innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
       document.getElementById('adStepNotice').innerText = 'Click the button below to unlock download links:';
 
-      alert(`✅ Thank you! "${currentMovie.title}" details have been sent to the admin. It will be uploaded soon!`);
+      alert(`✅ Thank you! Poster and details for "${currentMovie.title}" have been sent to the admin. It will be uploaded soon!`);
     }
 
     function openTelegramNoticeModal(movieTitle) {
@@ -2474,21 +2719,102 @@
       document.getElementById('autoTelegramNoticeModal').style.display = 'none';
     }
 
+    function closeNonSheetWatchModal() {
+      document.getElementById('nonSheetWatchModal').style.display = 'none';
+    }
+
+    function goToUnlockFromWatchMsg() {
+      closeNonSheetWatchModal();
+      const tgAlert = document.getElementById('tgFeedbackAlert');
+      const unlockBox = document.getElementById('adUnlockBox');
+      const qualityContainer = document.getElementById('qualityContainer');
+
+      if (tgAlert) tgAlert.style.display = 'none';
+      if (qualityContainer) qualityContainer.style.display = 'none';
+      if (unlockBox) unlockBox.style.display = 'block';
+
+      currentUnlockStep = 1;
+      clearInterval(stepCountdownTimer);
+      const btn = document.getElementById('adStepBtn');
+      btn.disabled = false;
+      btn.innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
+      document.getElementById('adStepNotice').innerText = 'Click the unlock button below to watch this movie on Telegram:';
+
+      document.getElementById('downloadSectionBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function loadCustomUrlIntoPlayer(rawUrl) {
+      let url = rawUrl.trim();
+      if (!/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+      }
+
+      const iframePlayer = document.getElementById('cineVideoPlayer');
+      const directVideo = document.getElementById('cineDirectVideo');
+      const externalBar = document.getElementById('directExternalBar');
+      const externalBtn = document.getElementById('btnDirectExternalOpen');
+
+      resetPlayerElements();
+
+      if (externalBar && externalBtn) {
+        externalBar.style.display = 'block';
+        externalBtn.onclick = () => openSafeUrl(url);
+      }
+
+      if (/\.(mp4|m4v|webm|ogg|mkv|mov)(\?.*)?$/i.test(url)) {
+        iframePlayer.style.display = 'none';
+        directVideo.style.display = 'block';
+        directVideo.src = url;
+        directVideo.play().catch(() => {});
+        return;
+      }
+
+      if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        const ytMatch = url.match(/(?:youtu\.be\/|watch\?v=|embed\/|shorts\/|v=)([\w-]{11})/);
+        if (ytMatch) {
+          iframePlayer.style.display = 'block';
+          iframePlayer.src = `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0&modestbranding=1`;
+          return;
+        }
+      }
+
+      if (url.includes('drive.google.com')) {
+        const gdMatch = url.match(/\/file\/d\/([^\/?#]+)|[?&]id=([^&]+)/);
+        if (gdMatch) {
+          const fileId = gdMatch[1] || gdMatch[2];
+          iframePlayer.style.display = 'block';
+          iframePlayer.src = `https://drive.google.com/file/d/${fileId}/preview`;
+          return;
+        }
+      }
+
+      iframePlayer.style.display = 'block';
+      iframePlayer.src = url;
+    }
+
     let currentServerIndex = 1;
     function playOnlineMovie() {
       if (!currentMovie) return;
       const playerWrap = document.getElementById('cinePlayerWrap');
+      const customUrl = (currentMovie.customWatchUrl || '').trim();
 
-      if (currentMovie.customWatchUrl && currentMovie.customWatchUrl.startsWith('http')) {
-        const player = document.getElementById('cineVideoPlayer');
-        player.src = currentMovie.customWatchUrl;
+      if (!currentMovie.isFromSheet && !customUrl) {
+        document.getElementById('nonSheetWatchModal').style.display = 'flex';
+        return;
+      }
+
+      if (customUrl && (/^https?:\/\//i.test(customUrl) || /^www\./i.test(customUrl))) {
         document.getElementById('serverSelectionBar').style.display = 'none';
+        document.getElementById('qualitySwitchBar').style.display = 'none';
+        loadCustomUrlIntoPlayer(customUrl);
         playerWrap.style.display = 'block';
         playerWrap.scrollIntoView({ behavior: 'smooth' });
         return;
       }
 
+      resetPlayerElements();
       document.getElementById('serverSelectionBar').style.display = 'flex';
+      document.getElementById('qualitySwitchBar').style.display = 'flex';
       switchOnlineServer(1);
       playerWrap.style.display = 'block';
       playerWrap.scrollIntoView({ behavior: 'smooth' });
@@ -2498,17 +2824,26 @@
       if (!currentMovie) return;
       currentServerIndex = num;
       const player = document.getElementById('cineVideoPlayer');
+      const directVideo = document.getElementById('cineDirectVideo');
+      if (directVideo) {
+        directVideo.onerror = null;
+        try { directVideo.pause(); } catch(e) {}
+        directVideo.style.display = 'none';
+      }
+      player.style.display = 'block';
+
       const tmdbId = currentMovie.tmdbId || currentMovie.id;
+      const type = currentMovie.isSeries ? 'tv' : 'movie';
 
       document.querySelectorAll('.server-btn').forEach((b, i) => {
         b.classList.toggle('active', i === (num - 1));
       });
 
-      if (num === 1) player.src = `https://vidsrc.xyz/embed/movie/${tmdbId}`;
-      else if (num === 2) player.src = `https://autoembed.co/movie/tmdb/${tmdbId}`;
+      if (num === 1) player.src = `https://vidsrc.xyz/embed/${type}/${tmdbId}`;
+      else if (num === 2) player.src = `https://autoembed.co/${type}/tmdb/${tmdbId}`;
       else if (num === 3) player.src = `https://multiembed.mov/?video_id=${tmdbId}&tmdb=1`;
-      else if (num === 4) player.src = `https://vidsrc.cc/v2/embed/movie/${tmdbId}`;
-      else if (num === 5) player.src = `https://player.smashystream.com/embed/movie/${tmdbId}`;
+      else if (num === 4) player.src = `https://vidsrc.cc/v2/embed/${type}/${tmdbId}`;
+      else if (num === 5) player.src = `https://player.smashystream.com/embed/${type}/${tmdbId}`;
     }
 
     function switchStreamQuality(res) {
@@ -2524,97 +2859,223 @@
       }
     }
 
+    async function fetchAdFreeMp4ForYouTubeKey(videoKey) {
+      const streamEndpoints = [];
+      if (CUSTOM_TRAILER_API && CUSTOM_TRAILER_API.trim()) {
+        streamEndpoints.push(`${CUSTOM_TRAILER_API.replace(/\/$/, '')}/api/stream/${videoKey}`);
+      }
+      streamEndpoints.push(
+        `https://pipedapi.kavin.rocks/streams/${videoKey}`,
+        `https://pipedapi.adminforge.de/streams/${videoKey}`
+      );
+
+      for (const apiUrl of streamEndpoints) {
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 3000);
+          const res = await fetch(apiUrl, { signal: controller.signal });
+          clearTimeout(timer);
+
+          if (!res.ok) continue;
+          const data = await res.json();
+          const directUrl = data.mp4Url || (data.videoStreams || []).find(s => !s.videoOnly && s.url && (s.format === 'MPEG_4' || /mp4/i.test(s.mimeType || '')))?.url;
+          if (directUrl) return directUrl;
+        } catch (e) {}
+      }
+      return null;
+    }
+
+    async function tryItunesExactTrailer(cleanedTitle, extractedYear) {
+      try {
+        const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(cleanedTitle)}&media=movie&country=US&limit=10`);
+        const data = await res.json();
+        const qNorm = normStr(cleanedTitle);
+        const hit = (data.results || []).find(item => {
+          if (!item.previewUrl || !/\.(m4v|mp4)/i.test(item.previewUrl)) return false;
+          const tNorm = normStr(item.trackName);
+          if (tNorm !== qNorm) return false;
+          if (extractedYear && item.releaseDate) {
+            const itemYear = parseInt(item.releaseDate.split('-')[0], 10);
+            if (Math.abs(itemYear - parseInt(extractedYear, 10)) > 2) return false;
+          }
+          return true;
+        });
+        return hit ? hit.previewUrl : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function playExactTrailerKey(videoKey, labelText) {
+      const iframePlayer = document.getElementById('cineVideoPlayer');
+      const directVideo = document.getElementById('cineDirectVideo');
+      const statusMsg = document.getElementById('trailerStatusMsg');
+
+      const mp4Url = await fetchAdFreeMp4ForYouTubeKey(videoKey);
+      if (mp4Url) {
+        iframePlayer.style.display = 'none';
+        directVideo.style.display = 'block';
+        directVideo.onerror = () => {
+          directVideo.onerror = null;
+          directVideo.style.display = 'none';
+          iframePlayer.style.display = 'block';
+          iframePlayer.src = `https://www.youtube-nocookie.com/embed/${videoKey}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3`;
+        };
+        directVideo.src = mp4Url;
+        directVideo.play().catch(() => {});
+      } else {
+        directVideo.style.display = 'none';
+        iframePlayer.style.display = 'block';
+        iframePlayer.src = `https://www.youtube-nocookie.com/embed/${videoKey}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3`;
+      }
+
+      statusMsg.innerText = labelText;
+      statusMsg.style.display = 'block';
+    }
+
     async function playOfficialTrailer() {
       if (!currentMovie) return;
       const playerWrap = document.getElementById('cinePlayerWrap');
       const player = document.getElementById('cineVideoPlayer');
-      document.getElementById('serverSelectionBar').style.display = 'none';
+      const directVideo = document.getElementById('cineDirectVideo');
+      const statusMsg = document.getElementById('trailerStatusMsg');
+      const qualityBar = document.getElementById('qualitySwitchBar');
 
-      if (currentMovie.trailerUrl && currentMovie.trailerUrl.includes('youtube')) {
-        const match = currentMovie.trailerUrl.match(/(?:youtu\.be\/|watch\?v=)([\w-]{11})/);
-        if (match) {
-          player.src = `https://www.youtube-nocookie.com/embed/${match[1]}?autoplay=1&rel=0`;
-          playerWrap.style.display = 'block';
-          playerWrap.scrollIntoView({ behavior: 'smooth' });
+      resetPlayerElements();
+      document.getElementById('serverSelectionBar').style.display = 'none';
+      if (qualityBar) qualityBar.style.display = 'none';
+      statusMsg.innerText = `⏳ Loading trailer for "${currentMovie.title}"...`;
+      statusMsg.style.display = 'block';
+      playerWrap.style.display = 'block';
+      playerWrap.scrollIntoView({ behavior: 'smooth' });
+
+      // 1. Custom trailer link from Google Sheet (Column O)
+      if (currentMovie.trailerUrl && /^https?:\/\//i.test(currentMovie.trailerUrl.trim())) {
+        const tUrl = currentMovie.trailerUrl.trim();
+        if (tUrl.includes('youtube') || tUrl.includes('youtu.be')) {
+          const match = tUrl.match(/(?:youtu\.be\/|watch\?v=|embed\/|shorts\/|v=)([\w-]{11})/);
+          if (match) {
+            await playExactTrailerKey(match[1], `🎬 ${currentMovie.title} — Official Trailer`);
+            return;
+          }
+        } else {
+          loadCustomUrlIntoPlayer(tUrl);
           return;
         }
       }
 
-      if (currentMovie.tmdbId) {
+      // 2. Find matching TMDB Movie/Series by title & year
+      const cleanedTitle = cleanTitleForSearch(currentMovie.title) || currentMovie.title;
+      const yearMatch = currentMovie.title.match(/\b(19\d{2}|20\d{2})\b/);
+      const extractedYear = yearMatch ? yearMatch[1] : (currentMovie.year || '');
+
+      let tmdbId = currentMovie.tmdbId;
+      let type = currentMovie.mediaType || (currentMovie.isSeries ? 'tv' : 'movie');
+
+      if (!tmdbId) {
         try {
-          const res = await fetch(`https://api.themoviedb.org/3/movie/${currentMovie.tmdbId}/videos?api_key=${TMDB_API_KEY}`);
+          const sRes = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(cleanedTitle)}`);
+          const sData = await resJsonSafe(sRes);
+          const hit = findBestTmdbMatch(sData?.results, cleanedTitle, extractedYear, currentMovie.category.toLowerCase().includes('bangla'));
+          if (hit) {
+            tmdbId = hit.id;
+            type = hit.media_type;
+            currentMovie.tmdbId = tmdbId;
+            currentMovie.mediaType = type;
+          }
+        } catch (e) {}
+      }
+
+      // 3. Ad-free iTunes US trailer
+      const exactItunesUrl = await tryItunesExactTrailer(cleanedTitle, extractedYear);
+      if (exactItunesUrl) {
+        player.style.display = 'none';
+        directVideo.style.display = 'block';
+        directVideo.onerror = null;
+        directVideo.src = exactItunesUrl;
+        directVideo.play().catch(() => {});
+        statusMsg.innerText = `🎬 ${currentMovie.title} — Official Trailer (Ad-Free)`;
+        return;
+      }
+
+      // 4. TMDB YouTube Trailer (prioritizing English)
+      if (tmdbId) {
+        try {
+          const res = await fetch(`https://api.themoviedb.org/3/${type}/${tmdbId}/videos?api_key=${TMDB_API_KEY}&include_video_language=en,hi,bn,ta,te,ml,kn,ko,ja,null`);
           const data = await res.json();
-          const ytTrailer = (data.results || []).find(v => v.site === 'YouTube' && (v.type === 'Trailer' || v.type === 'Teaser' || v.type === 'Clip'));
-          if (ytTrailer) {
-            player.src = `https://www.youtube-nocookie.com/embed/${ytTrailer.key}?autoplay=1&rel=0`;
-            playerWrap.style.display = 'block';
-            playerWrap.scrollIntoView({ behavior: 'smooth' });
+          const videos = (data.results || []).filter(v => v.site === 'YouTube' && v.key);
+
+          const pickedTrailer =
+            videos.find(v => v.iso_639_1 === 'en' && v.type === 'Trailer') ||
+            videos.find(v => v.type === 'Trailer') ||
+            videos.find(v => v.iso_639_1 === 'en' && v.type === 'Teaser') ||
+            videos.find(v => v.type === 'Teaser') ||
+            videos[0];
+
+          if (pickedTrailer) {
+            await playExactTrailerKey(pickedTrailer.key, `🎬 ${currentMovie.title} — Official Trailer`);
             return;
           }
         } catch (e) {}
       }
 
-      const cleanTitle = currentMovie.title.replace(/\(\s*\d{4}\s*\)/g, '').trim();
-      const ytDirectUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(cleanTitle + ' official trailer')}`;
-      openSafeUrl(ytDirectUrl);
+      // 5. Fallback message if no trailer found
+      player.style.display = 'none';
+      statusMsg.innerText = `⚠️ Sorry! Trailer for "${currentMovie.title}" was not found. You can watch the full movie below.`;
+    }
+
+    async function resJsonSafe(res) {
+      try { return await res.json(); } catch(e) { return null; }
     }
 
     function scrollToDownload() {
       document.getElementById('downloadSectionBox').scrollIntoView({ behavior: 'smooth' });
     }
 
-    async function selectCategory(cat, event) {
+    function selectCategory(cat, event) {
       if (event) event.stopPropagation();
       activeCategory = cat;
-      selectCategoryPill(cat === 'All' ? 'Home' : cat);
+      document.getElementById('dropdownMenu').style.display = 'none';
+      selectCategoryPill(cat);
 
       if (cat === 'All') {
         goHome();
-        return;
-      }
-
-      document.getElementById('heroBannerSection').style.display = 'none';
-      document.getElementById('homeSectionsContainer').style.display = 'none';
-      document.getElementById('fullListViewBlock').style.display = 'block';
-      document.getElementById('fullViewTitle').innerText = `${cat} English Movies`;
-      fullListPage = 1;
-
-      if (cat === 'Trending') {
-        fullListCurrentMovies = allMovies.filter(m => m.trending || m.pinned);
-        if (fullListCurrentMovies.length === 0) {
-          fullListCurrentMovies = await fetchEnglishMoviesFromTMDB('/discover/movie?sort_by=popularity.desc&vote_count.gte=50');
-        }
-      } else if (cat === 'Top Rated') {
-        fullListCurrentMovies = allMovies.filter(m => (m.numericRating || 0) >= 7.5);
-        if (fullListCurrentMovies.length < 6) {
-          const tmdbTop = await fetchEnglishMoviesFromTMDB('/discover/movie?sort_by=vote_average.desc&vote_count.gte=500');
-          fullListCurrentMovies = [...fullListCurrentMovies, ...tmdbTop];
-        }
       } else {
-        fullListCurrentMovies = allMovies.filter(m =>
-          m.category.toLowerCase().includes(cat.toLowerCase()) ||
-          m.genreText?.toLowerCase().includes(cat.toLowerCase()) ||
-          m.details?.toLowerCase().includes(cat.toLowerCase())
-        );
+        document.getElementById('heroBannerSection').style.display = 'none';
+        document.getElementById('homeSectionsContainer').style.display = 'none';
+        document.getElementById('fullListViewBlock').style.display = 'block';
+        document.getElementById('fullViewTitle').innerText = `${cat} Collections`;
+        fullListPage = 1;
 
-        if (fullListCurrentMovies.length === 0 && CATEGORY_TMDB_GENRE_ID[cat]) {
-          fullListCurrentMovies = await fetchEnglishMoviesFromTMDB(`/discover/movie?with_genres=${CATEGORY_TMDB_GENRE_ID[cat]}&sort_by=popularity.desc`);
-        }
+        if (cat === 'Trending') fullListCurrentMovies = allMovies.filter(m => m.trending || m.pinned);
+        else if (cat === 'Series') fullListCurrentMovies = allMovies.filter(m => m.isSeries);
+        else fullListCurrentMovies = allMovies.filter(m => m.category.toLowerCase().includes(cat.toLowerCase()) || m.details?.toLowerCase().includes(cat.toLowerCase()));
+
+        renderFullListPage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-
-      renderFullListPage();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function selectCategoryPill(label) {
-      document.querySelectorAll('.glass-pill').forEach(pill => {
-        if (pill.innerText.trim().toLowerCase() === label.toLowerCase()) pill.classList.add('active');
+    function selectCategoryPill(cat) {
+      document.querySelectorAll('.pill').forEach(pill => {
+        if (pill.innerText.trim().toLowerCase() === cat.toLowerCase()) pill.classList.add('active');
         else pill.classList.remove('active');
       });
     }
 
+    function toggleMenu(event) {
+      if (event) event.stopPropagation();
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', () => {
+      const menu = document.getElementById('dropdownMenu');
+      if (menu) menu.style.display = 'none';
+    });
+
     function checkDirectMovieLink() {
-      const movieId = urlParams.get('id') || localStorage.getItem('cinepulse_en_last_id');
+      const movieId = urlParams.get('id') || localStorage.getItem('last_opened_id');
       if (movieId) {
         const found = allMovies.find(m => m.id == movieId);
         if (found) openCineDetail(parseInt(movieId));
@@ -2648,6 +3109,10 @@
       };
     }
 
+    function openNotificationNotice() {
+      alert("🔔 CineVibeBD Notice:\n\nNew English movies and web series are being updated daily!");
+    }
+
     function openRequestModal() {
       document.getElementById('reqModal').style.display = 'flex';
     }
@@ -2660,7 +3125,7 @@
       const input = document.getElementById('reqMovieInput');
       const movieName = input.value.trim();
       if (!movieName) {
-        alert("Please enter an English movie title!");
+        alert("Please enter a movie name!");
         return;
       }
 
@@ -2668,11 +3133,10 @@
 
       let posterLink = "N/A";
       try {
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movieName)}`);
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(movieName)}`);
         const data = await res.json();
-        const enItem = (data.results || []).find(r => r.original_language === 'en' && r.poster_path) || (data.results || [])[0];
-        if (enItem && enItem.poster_path) {
-          posterLink = `https://image.tmdb.org/t/p/w500${enItem.poster_path}`;
+        if (data.results && data.results[0] && data.results[0].poster_path) {
+          posterLink = `https://image.tmdb.org/t/p/w500${data.results[0].poster_path}`;
         }
       } catch(e) {}
 
@@ -2681,23 +3145,23 @@
           method: "POST",
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            Subject: `🚨 English Movie Request (CinePulse): ${movieName}`,
-            "Movie Title": movieName,
-            "Poster URL": posterLink,
-            "Timestamp": new Date().toLocaleString()
+            Subject: `🚨 Movie Request: ${movieName}`,
+            "Movie Name": movieName,
+            "Poster Link": posterLink,
+            "Date & Time": new Date().toLocaleString()
           })
         });
       } catch (e) {}
 
       closeRequestModal();
       input.value = '';
-      alert(`✅ Thank you! Your request for "${movieName}" has been sent to the admin.`);
+      alert(`✅ Thank you! Your request for "${movieName}" along with poster info has been sent to the admin.`);
     }
 
     fetchMoviesFromSheet();
   </script>
 
-  <!-- Social Bar Ad -->
+  <!-- Social Bar Ad (Loads after main content for smooth UX) -->
   <script data-cfasync="false" src="https://bancadeltempoidea.org/14/3c12a21d984165afb2e8c2dc456ef1d8"></script>
 </body>
-    </html>
+          </html>
