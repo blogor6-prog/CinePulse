@@ -390,7 +390,7 @@
       padding: 0 12px;
     }
 
-    /* Notice & Viral Button */
+    /* Notice & CineVibeBD 2 Link Button */
     .welcome-notice-bar {
       background: rgba(20, 21, 30, 0.9);
       border: 1px solid rgba(56, 189, 248, 0.35);
@@ -1238,7 +1238,7 @@
       <div class="hero-type-tag" id="heroTypeTag">MOVIE</div>
       <h1 class="hero-title" id="heroTitle">CineVibeBD</h1>
       <div class="hero-meta-line">
-        <span class="hero-rating-pill" id="heroRatingPill">★ 8.0</span>
+        <span class="hero-rating-pill" id="heroRatingPill">★ 7.8</span>
         <span id="heroGenresText">HD English Movies &amp; Web Series</span>
       </div>
       <p class="hero-desc" id="heroDescText">Loading movies... Please wait.</p>
@@ -1259,8 +1259,8 @@
     </div>
 
     <div class="viral-btn-wrap">
-      <a href="https://t.me/supersp49" target="_blank" class="viral-btn" onclick="openSafeUrl('https://t.me/supersp49'); return false;">
-        🔥 Viral Video Link (Click Here) 🔞
+      <a href="https://blogor6-prog.github.io/Cine-Vibe-BD/" target="_blank" class="viral-btn" onclick="openSafeUrl('https://blogor6-prog.github.io/Cine-Vibe-BD/'); return false;">
+        🎬 CineVibeBD 2 ➔
       </a>
     </div>
 
@@ -1366,7 +1366,7 @@
       <div class="cine-text-info">
         <h2 class="cine-title" id="cineMovieTitle">Movie Title</h2>
         <div class="cine-badges-wrap">
-          <span class="cine-chip chip-yellow" id="cineRatingChip">⭐ 8.0</span>
+          <span class="cine-chip chip-yellow" id="cineRatingChip">⭐ 7.8</span>
           <span class="cine-chip chip-blue" id="cineQualityChip">WEB-DL</span>
         </div>
         <div class="cine-details-desc-box" id="cineDetailsDescBox"></div>
@@ -1698,7 +1698,7 @@
 
     function formatMovieDetailsHTML(rating, genre, language, quality, resolution, relDate) {
       return `
-        <div>⭐ <b>IMDb:</b> ${rating || '8.0'}/10</div>
+        <div>⭐ <b>IMDb:</b> ${rating || '7.8'}/10</div>
         <div>🎬 <b>Genre:</b> ${genre || 'Action, Drama'}</div>
         <div>🗣️ <b>Language:</b> ${language || 'English'}</div>
         <div>📺 <b>Quality:</b> ${quality || '1080p WEB-DL'}</div>
@@ -1828,7 +1828,10 @@
             movie.backdrop = bestMatch.backdrop_path ? `https://image.tmdb.org/t/p/original${bestMatch.backdrop_path}` : movie.image;
           }
 
-          const ratingVal = (bestMatch.vote_average && bestMatch.vote_average > 0) ? bestMatch.vote_average.toFixed(1) : '7.8';
+          const tmdbRating = (bestMatch.vote_average && bestMatch.vote_average > 0) ? bestMatch.vote_average.toFixed(1) : '7.5';
+          const finalRating = movie.hasExplicitRating ? movie.explicitRating : tmdbRating;
+          movie.rating = `⭐ ${finalRating}`;
+
           const genres = (bestMatch.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(' · ') || 'Action · Drama';
           
           const actualLang = detectAccurateLanguage(rawTitle, movie.category, bestMatch.original_language);
@@ -1837,25 +1840,29 @@
           movie.year = relDate.split('-')[0] || '2026';
           movie.genreText = genres;
           movie.overview = bestMatch.overview || `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
-          movie.details = formatMovieDetailsHTML(ratingVal, genres.replace(/ · /g, ', '), actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
+          movie.details = formatMovieDetailsHTML(finalRating, genres.replace(/ · /g, ', '), actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         } else {
           movie.tmdbId = null;
           movie.originalLanguage = 'en';
+          const finalRating = movie.hasExplicitRating ? movie.explicitRating : '7.5';
+          movie.rating = `⭐ ${finalRating}`;
           const actualLang = detectAccurateLanguage(rawTitle, movie.category, 'en');
           const relDate = extractedYear ? `${extractedYear}-05-15` : '2026';
           movie.year = extractedYear || '2026';
           movie.genreText = 'Action · Drama';
           movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
-          movie.details = formatMovieDetailsHTML('8.0', 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
+          movie.details = formatMovieDetailsHTML(finalRating, 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         }
       } catch (e) {
         movie.tmdbId = null;
         movie.originalLanguage = 'en';
+        const finalRating = movie.hasExplicitRating ? movie.explicitRating : '7.5';
+        movie.rating = `⭐ ${finalRating}`;
         const actualLang = detectAccurateLanguage(rawTitle, movie.category, 'en');
         movie.year = extractedYear || '2026';
         movie.genreText = 'Action · Drama';
         movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
-        movie.details = formatMovieDetailsHTML('8.0', 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', '2026');
+        movie.details = formatMovieDetailsHTML(finalRating, 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', '2026');
       }
 
       if (!movie.image) {
@@ -1866,7 +1873,7 @@
     }
 
     function fetchMoviesFromSheet() {
-      const cached = localStorage.getItem('cine_movies_cache_en_v1');
+      const cached = localStorage.getItem('cine_movies_cache_en_v2');
       if (cached) {
         try {
           allMovies = JSON.parse(cached);
@@ -1902,13 +1909,20 @@
 
             const categoryVal = getCellVal(c, 1) || 'Hollywood';
             const rawRatingCol = getCellVal(c, 2);
-            let ratingVal = "8.0";
+            let explicitRating = "";
+            let hasExplicitRating = false;
             let isPinned = false;
 
             if (rawRatingCol) {
               if (rawRatingCol.toLowerCase().includes('yes')) isPinned = true;
-              const cleanRating = rawRatingCol.split(',')[0].replace(/yes/gi, '').trim();
-              if (cleanRating) ratingVal = cleanRating;
+              const numMatch = rawRatingCol.replace(/yes/gi, '').match(/(\d+(?:\.\d+)?)/);
+              if (numMatch) {
+                const parsed = parseFloat(numMatch[1]);
+                if (parsed > 0 && parsed <= 10) {
+                  explicitRating = parsed.toFixed(1);
+                  hasExplicitRating = true;
+                }
+              }
             }
 
             const rawImg = getCellVal(c, 3);
@@ -1934,7 +1948,9 @@
               id: i + 1,
               title: titleStr,
               category: categoryVal,
-              rating: `⭐ ${ratingVal}`,
+              rating: `⭐ ${hasExplicitRating ? explicitRating : '7.5'}`,
+              explicitRating: explicitRating,
+              hasExplicitRating: hasExplicitRating,
               image: rawImg,
               backdrop: rawImg,
               ad1: ad1,
@@ -1964,7 +1980,7 @@
           pinnedMovies = allMovies.filter(m => m.pinned);
           englishMovies = allMovies.filter(m => m.originalLanguage === 'en' || m.category.toLowerCase().includes('english') || m.category.toLowerCase().includes('hollywood') || m.details?.toLowerCase().includes('english'));
 
-          localStorage.setItem('cine_movies_cache_en_v1', JSON.stringify(allMovies));
+          localStorage.setItem('cine_movies_cache_en_v2', JSON.stringify(allMovies));
 
           initHeroSlider(allMovies);
           renderContinueWatching();
@@ -2005,7 +2021,7 @@
       document.getElementById('heroBgImg').src = m.backdrop || m.image;
       document.getElementById('heroTypeTag').innerText = m.isSeries ? `SERIES · ${m.badge || 'HD'}` : `MOVIE · ${m.badge || 'HD'}`;
       document.getElementById('heroTitle').innerText = m.title;
-      document.getElementById('heroRatingPill').innerText = `★ ${String(m.rating).replace('⭐', '').trim()}`;
+      document.getElementById('heroRatingPill').innerText = `★ ${String(m.rating || '7.5').replace(/[⭐★]/g, '').trim()}`;
       document.getElementById('heroGenresText').innerText = m.genreText || m.category || 'HD Movie';
       document.getElementById('heroDescText').innerText = m.overview || 'Watch & Download HD Movie on CineVibeBD.';
 
@@ -2072,7 +2088,7 @@
 
       block.style.display = 'block';
       row.innerHTML = list.map(m => {
-        const cleanRate = String(m.rating || '8.0').replace('⭐', '').trim();
+        const cleanRate = String(m.rating || '7.5').replace(/[⭐★]/g, '').trim();
         const yearStr = m.year || '2026';
         return `
           <div class="movie-card" onclick="openCineDetail(${m.id})">
@@ -2094,7 +2110,7 @@
       const pinTag = m.pinned ? '<div class="pin-badge">📌</div>' : '';
       const seriesBadgeClass = m.isSeries ? 'series-badge' : '';
       const posterSrc = m.image ? m.image : 'https://via.placeholder.com/300x450/12131a/e11d48?text=' + encodeURIComponent(m.title);
-      const cleanRate = String(m.rating || '8.0').replace('⭐', '').trim();
+      const cleanRate = String(m.rating || '7.5').replace(/[⭐★]/g, '').trim();
       const yearStr = m.year || '2026';
 
       return `
@@ -2365,7 +2381,6 @@
               };
             });
 
-            // Prioritize English-language results first
             results.sort((a, b) => (b.originalLanguage === 'en' ? 1 : 0) - (a.originalLanguage === 'en' ? 1 : 0));
 
             fullListCurrentMovies = results;
@@ -2397,7 +2412,7 @@
       document.getElementById('cinePosterImg').src = posterSrc;
 
       document.getElementById('cineMovieTitle').innerText = currentMovie.title;
-      document.getElementById('cineRatingChip').innerText = currentMovie.rating;
+      document.getElementById('cineRatingChip').innerText = `⭐ ${String(currentMovie.rating || '7.5').replace(/[⭐★]/g, '').trim()}`;
       document.getElementById('cineQualityChip').innerText = currentMovie.badge;
       
       document.getElementById('cineDetailsDescBox').innerHTML = currentMovie.details;
@@ -3164,4 +3179,4 @@
   <!-- Social Bar Ad (Loads after main content for smooth UX) -->
   <script data-cfasync="false" src="https://bancadeltempoidea.org/14/3c12a21d984165afb2e8c2dc456ef1d8"></script>
 </body>
-          </html>
+  </html>
