@@ -1850,7 +1850,7 @@
           const relDate = extractedYear ? `${extractedYear}-05-15` : '2026';
           movie.year = extractedYear || '2026';
           movie.genreText = 'Action · Drama';
-          movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+          movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeEN.`;
           movie.details = formatMovieDetailsHTML(finalRating, 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         }
       } catch (e) {
@@ -1861,7 +1861,7 @@
         const actualLang = detectAccurateLanguage(rawTitle, movie.category, 'en');
         movie.year = extractedYear || '2026';
         movie.genreText = 'Action · Drama';
-        movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+        movie.overview = `${actualLang} · Watch & Download HD Movie on CineVibeEN.`;
         movie.details = formatMovieDetailsHTML(finalRating, 'Action, Drama', actualLang, '1080p WEB-DL', '1920x1080 FHD', '2026');
       }
 
@@ -3125,7 +3125,7 @@
     }
 
     function openNotificationNotice() {
-      alert("🔔 CineVibeBD Notice:\n\nNew English movies and web series are being updated daily!");
+      alert("🔔 CineVibeEN Notice:\n\nNew English movies and web series are being updated daily!");
     }
 
     function openRequestModal() {
