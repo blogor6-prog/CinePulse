@@ -1555,7 +1555,7 @@
 
     const itemsPerPage = 21;
     const urlParams = new URLSearchParams(window.location.search);
-    let homePage = parseInt(urlParams.get('page')) || parseInt(localStorage.getItem('cine_current_page')) || 1;
+    let homePage = parseInt(urlParams.get('page')) || parseInt(localStorage.getItem('cinevibeen_page')) || 1;
     let fullListPage = 1;
     let fullListCurrentMovies = [];
 
@@ -1659,15 +1659,15 @@
     function recordUserSearchQuery(query) {
       if (!query || query.length < 2) return;
       let cleanQuery = query.trim();
-      let searchData = JSON.parse(localStorage.getItem('cine_user_searches') || '{}');
+      let searchData = JSON.parse(localStorage.getItem('cinevibeen_searches') || '{}');
       searchData[cleanQuery] = (searchData[cleanQuery] || 0) + 1;
-      localStorage.setItem('cine_user_searches', JSON.stringify(searchData));
+      localStorage.setItem('cinevibeen_searches', JSON.stringify(searchData));
     }
 
     function openUserSearchesModal() {
       const container = document.getElementById('userSearchesList');
       container.innerHTML = '';
-      const searchData = JSON.parse(localStorage.getItem('cine_user_searches') || '{}');
+      const searchData = JSON.parse(localStorage.getItem('cinevibeen_searches') || '{}');
       const sortedQueries = Object.keys(searchData).sort((a, b) => searchData[b] - searchData[a]);
 
       if (sortedQueries.length === 0) {
@@ -1839,7 +1839,7 @@
 
           movie.year = relDate.split('-')[0] || '2026';
           movie.genreText = genres;
-          movie.overview = bestMatch.overview || `${actualLang} · Watch & Download HD Movie on CineVibeBD.`;
+          movie.overview = bestMatch.overview || `${actualLang} · Watch & Download HD Movie on CineVibeEN.`;
           movie.details = formatMovieDetailsHTML(finalRating, genres.replace(/ · /g, ', '), actualLang, '1080p WEB-DL', '1920x1080 FHD', relDate);
         } else {
           movie.tmdbId = null;
@@ -2023,7 +2023,7 @@
       document.getElementById('heroTitle').innerText = m.title;
       document.getElementById('heroRatingPill').innerText = `★ ${String(m.rating || '7.5').replace(/[⭐★]/g, '').trim()}`;
       document.getElementById('heroGenresText').innerText = m.genreText || m.category || 'HD Movie';
-      document.getElementById('heroDescText').innerText = m.overview || 'Watch & Download HD Movie on CineVibeBD.';
+      document.getElementById('heroDescText').innerText = m.overview || 'Watch & Download HD Movie on CineVibeEN.';
 
       document.querySelectorAll('.hero-dot').forEach((d, idx) => {
         d.classList.toggle('active', idx === currentHeroIndex);
@@ -2051,27 +2051,27 @@
       if (m) openCineDetail(m.id);
     }
 
-    /* Continue Watching Logic */
+    /* Continue Watching Logic (Isolated for CineVibeEN) */
     function saveToContinueWatching(movie) {
       if (!movie) return;
-      let list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
+      let list = JSON.parse(localStorage.getItem('cinevibeen_cw') || '[]');
       list = list.filter(item => item.id !== movie.id);
       list.unshift(movie);
       list = list.slice(0, 10);
-      localStorage.setItem('cinevibebd_cw', JSON.stringify(list));
+      localStorage.setItem('cinevibeen_cw', JSON.stringify(list));
       renderContinueWatching();
     }
 
     function removeContinueWatching(id, event) {
       event.stopPropagation();
-      let list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
+      let list = JSON.parse(localStorage.getItem('cinevibeen_cw') || '[]');
       list = list.filter(item => item.id !== id);
-      localStorage.setItem('cinevibebd_cw', JSON.stringify(list));
+      localStorage.setItem('cinevibeen_cw', JSON.stringify(list));
       renderContinueWatching();
     }
 
     function clearContinueWatching() {
-      localStorage.removeItem('cinevibebd_cw');
+      localStorage.removeItem('cinevibeen_cw');
       renderContinueWatching();
       if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
     }
@@ -2079,7 +2079,7 @@
     function renderContinueWatching() {
       const block = document.getElementById('continueWatchingBlock');
       const row = document.getElementById('continueWatchingRow');
-      const list = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
+      const list = JSON.parse(localStorage.getItem('cinevibeen_cw') || '[]');
 
       if (list.length === 0) {
         block.style.display = 'none';
@@ -2187,7 +2187,7 @@
 
       renderPagination(allMovies.length, homePage, 'homePaginationBar', (p) => {
         homePage = p;
-        localStorage.setItem('cine_current_page', p);
+        localStorage.setItem('cinevibeen_page', p);
         const newUrl = window.location.pathname + '?page=' + p;
         window.history.replaceState({ path: newUrl }, '', newUrl);
 
@@ -2247,7 +2247,7 @@
       document.getElementById('homeSectionsContainer').style.display = 'block';
       document.getElementById('searchBarPanel').classList.remove('open');
       homePage = 1;
-      localStorage.setItem('cine_current_page', 1);
+      localStorage.setItem('cinevibeen_page', 1);
       window.history.replaceState({}, '', window.location.pathname);
       renderRecentMovies();
       document.getElementById('searchInput').value = '';
@@ -2395,7 +2395,7 @@
     }
 
     function openCineDetail(id) {
-      const cwList = JSON.parse(localStorage.getItem('cinevibebd_cw') || '[]');
+      const cwList = JSON.parse(localStorage.getItem('cinevibeen_cw') || '[]');
       currentMovie = allMovies.find(m => m.id === id) ||
                      fullListCurrentMovies.find(m => m.id === id) ||
                      heroMovies.find(m => m.id === id) ||
@@ -2403,7 +2403,7 @@
       if (!currentMovie) return;
 
       previousScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      localStorage.setItem('last_opened_id', id);
+      localStorage.setItem('cinevibeen_last_id', id);
       saveToContinueWatching(currentMovie);
 
       const posterSrc = currentMovie.image || 'https://via.placeholder.com/300';
@@ -2482,7 +2482,7 @@
     }
 
     function closeCineDetail() {
-      localStorage.removeItem('last_opened_id');
+      localStorage.removeItem('cinevibeen_last_id');
       clearInterval(stepCountdownTimer);
       resetPlayerElements();
       document.getElementById('cineDetailView').style.display = 'none';
@@ -3090,7 +3090,7 @@
     });
 
     function checkDirectMovieLink() {
-      const movieId = urlParams.get('id') || localStorage.getItem('last_opened_id');
+      const movieId = urlParams.get('id') || localStorage.getItem('cinevibeen_last_id');
       if (movieId) {
         const found = allMovies.find(m => m.id == movieId);
         if (found) openCineDetail(parseInt(movieId));
