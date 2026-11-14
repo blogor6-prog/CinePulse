@@ -545,6 +545,9 @@
       z-index: 3;
     }
     .series-badge { background: linear-gradient(135deg, #a855f7, #6366f1) !important; }
+    .tmdb-part-badge { background: linear-gradient(135deg, #0284c7, #2563eb) !important; }
+    .current-part-badge { background: #e11d48 !important; }
+
     .pin-badge {
       position: absolute;
       bottom: 6px;
@@ -981,6 +984,37 @@
       display: flex;
       align-items: center;
       gap: 6px;
+    }
+
+    /* Related Parts Section inside Download Box */
+    .related-parts-wrap {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+      display: none;
+    }
+    .related-parts-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .related-parts-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+    .related-parts-row::-webkit-scrollbar { display: none; }
+    .related-parts-row .movie-card {
+      flex: 0 0 108px;
+    }
+    .related-parts-row .movie-poster-wrap {
+      height: 152px;
     }
 
     .tg-feedback-alert {
@@ -1443,6 +1477,12 @@
       </div>
 
       <div class="quality-options-list" id="qualityContainer" style="display: none;"></div>
+
+      <!-- All Parts / Franchise Section (Below Download Unlock Button) -->
+      <div class="related-parts-wrap" id="relatedPartsSection">
+        <div class="related-parts-title">🎞️ All Parts / Franchise Collection</div>
+        <div class="related-parts-row" id="relatedPartsRow"></div>
+      </div>
     </div>
   </div>
 
@@ -1551,6 +1591,7 @@
     let heroAutoTimer = null;
 
     let currentMovie = null;
+    let currentRelatedParts = [];
     let activeCategory = 'All';
 
     const itemsPerPage = 21;
@@ -1732,6 +1773,16 @@
         .replace(/[-_|()[\]]+/g, ' ')
         .replace(/\s+/g, ' ')
         .trim();
+    }
+
+    function extractBaseFranchiseTitle(rawTitle) {
+      let t = cleanTitleForSearch(rawTitle);
+      t = t.replace(/\b(part|chapter|vol|volume)\s*\d+\b/gi, '')
+           .replace(/\s+\d+$/, '')
+           .replace(/\s+(i|ii|iii|iv|v|vi)$/i, '')
+           .replace(/[:\-–]+$/, '')
+           .trim();
+      return t;
     }
 
     function normStr(s) {
@@ -2304,6 +2355,37 @@
       container.innerHTML = trendingItems.map(createMovieCardHTML).join('');
     }
 
+    function buildExternalMovieObj(item, fallbackYear) {
+      const isTv = item.media_type === 'tv' || !!item.first_air_date;
+      const releaseDate = item.release_date || item.first_air_date || (fallbackYear ? `${fallbackYear}-01-01` : '2026');
+      const year = releaseDate ? releaseDate.split('-')[0] : '2026';
+      const titleName = item.title || item.name;
+      const ratingVal = (item.vote_average && item.vote_average > 0) ? item.vote_average.toFixed(1) : '7.5';
+      const genres = (item.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(', ') || 'Action, Drama';
+      const actualLang = ACCURATE_LANG_MAP[item.original_language] || "English";
+
+      return {
+        id: item.id,
+        tmdbId: item.id,
+        mediaType: isTv ? 'tv' : 'movie',
+        originalLanguage: item.original_language || 'en',
+        title: titleName,
+        category: isTv ? 'Series' : 'Movie',
+        rating: `⭐ ${ratingVal}`,
+        year: year,
+        overview: item.overview || `${actualLang} · Watch & Download HD Movie`,
+        image: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '',
+        backdrop: (item.backdrop_path || item.poster_path) ? `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}` : '',
+        badge: isTv ? 'SERIES' : `${year} HD`,
+        details: formatMovieDetailsHTML(ratingVal, genres, actualLang, '1080p WEB-DL', '1920x1080 FHD', releaseDate),
+        links: [],
+        ad1: NON_SHEET_AD1_URL,
+        ad2: NON_SHEET_AD2_URL,
+        isSeries: isTv,
+        isFromSheet: false
+      };
+    }
+
     let searchDebounce;
     function handleSearch() {
       clearTimeout(searchDebounce);
@@ -2350,36 +2432,9 @@
               data = await res.json();
             }
             
-            let results = (data.results || []).filter(item => (item.media_type === 'movie' || item.media_type === 'tv') && item.poster_path).map((item) => {
-              const isTv = item.media_type === 'tv' || !!item.first_air_date;
-              const releaseDate = item.release_date || item.first_air_date || (searchYear ? `${searchYear}-01-01` : '2026');
-              const year = releaseDate ? releaseDate.split('-')[0] : '2026';
-              const titleName = item.title || item.name;
-              const ratingVal = (item.vote_average && item.vote_average > 0) ? item.vote_average.toFixed(1) : '7.5';
-              const genres = (item.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(', ') || 'Action, Drama';
-              const actualLang = ACCURATE_LANG_MAP[item.original_language] || "English";
-
-              return {
-                id: item.id,
-                tmdbId: item.id,
-                mediaType: isTv ? 'tv' : 'movie',
-                originalLanguage: item.original_language || 'en',
-                title: titleName,
-                category: isTv ? 'Series' : 'Movie',
-                rating: `⭐ ${ratingVal}`,
-                year: year,
-                overview: item.overview || `${actualLang} · Watch & Download HD Movie`,
-                image: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                backdrop: `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}`,
-                badge: isTv ? 'SERIES' : `${year} HD`,
-                details: formatMovieDetailsHTML(ratingVal, genres, actualLang, '1080p WEB-DL', '1920x1080 FHD', releaseDate),
-                links: [],
-                ad1: NON_SHEET_AD1_URL,
-                ad2: NON_SHEET_AD2_URL,
-                isSeries: isTv,
-                isFromSheet: false
-              };
-            });
+            let results = (data.results || [])
+              .filter(item => (item.media_type === 'movie' || item.media_type === 'tv') && item.poster_path)
+              .map(item => buildExternalMovieObj(item, searchYear));
 
             results.sort((a, b) => (b.originalLanguage === 'en' ? 1 : 0) - (a.originalLanguage === 'en' ? 1 : 0));
 
@@ -2396,14 +2451,28 @@
 
     function openCineDetail(id) {
       const cwList = JSON.parse(localStorage.getItem('cinevibeen_cw') || '[]');
-      currentMovie = allMovies.find(m => m.id === id) ||
-                     fullListCurrentMovies.find(m => m.id === id) ||
-                     heroMovies.find(m => m.id === id) ||
-                     cwList.find(m => m.id === id);
-      if (!currentMovie) return;
+      const movieObj = allMovies.find(m => m.id === id) ||
+                       fullListCurrentMovies.find(m => m.id === id) ||
+                       heroMovies.find(m => m.id === id) ||
+                       cwList.find(m => m.id === id);
+      if (!movieObj) return;
+      openCineDetailWithObj(movieObj);
+    }
 
-      previousScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      localStorage.setItem('cinevibeen_last_id', id);
+    function openRelatedPart(idx) {
+      const partObj = currentRelatedParts[idx];
+      if (!partObj) return;
+      openCineDetailWithObj(partObj);
+    }
+
+    function openCineDetailWithObj(movieObj) {
+      if (!movieObj) return;
+      currentMovie = movieObj;
+
+      if (document.getElementById('cineDetailView').style.display !== 'block') {
+        previousScrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      }
+      localStorage.setItem('cinevibeen_last_id', currentMovie.id);
       saveToContinueWatching(currentMovie);
 
       const posterSrc = currentMovie.image || 'https://via.placeholder.com/300';
@@ -2421,6 +2490,7 @@
       document.getElementById('cinePlayerWrap').style.display = 'none';
 
       loadCastInfoWithRealPhotos(currentMovie);
+      loadRelatedParts(currentMovie);
 
       currentUnlockStep = 1;
       clearInterval(stepCountdownTimer);
@@ -2456,6 +2526,141 @@
         tg.BackButton.show();
         tg.BackButton.onClick(closeCineDetail);
       }
+    }
+
+    function findSheetMatchForPart(partTmdbId, partTitle) {
+      const pNorm = normStr(cleanTitleForSearch(partTitle));
+      return allMovies.find(m =>
+        (partTmdbId && m.tmdbId && m.tmdbId === partTmdbId) ||
+        normStr(cleanTitleForSearch(m.title)) === pNorm
+      ) || null;
+    }
+
+    async function loadRelatedParts(movie) {
+      const section = document.getElementById('relatedPartsSection');
+      const row = document.getElementById('relatedPartsRow');
+      section.style.display = 'none';
+      row.innerHTML = '';
+      currentRelatedParts = [];
+
+      const partsMap = new Map();
+      const addPart = (partObj) => {
+        if (!partObj || !partObj.title) return;
+        const key = partObj.tmdbId ? `tmdb_${partObj.tmdbId}` : `title_${normStr(cleanTitleForSearch(partObj.title))}`;
+        if (!partsMap.has(key)) {
+          partsMap.set(key, partObj);
+        } else if (partObj.isFromSheet && !partsMap.get(key).isFromSheet) {
+          partsMap.set(key, partObj);
+        }
+      };
+
+      const baseTitle = extractBaseFranchiseTitle(movie.title);
+      const baseNorm = normStr(baseTitle);
+
+      // ১. প্রথমেই Google Sheet থেকে একই সিরিজ/ফ্র্যাঞ্চাইজির সব পার্ট নেওয়া
+      if (baseNorm.length >= 3) {
+        allMovies.forEach(m => {
+          const mBase = normStr(extractBaseFranchiseTitle(m.title));
+          if (mBase === baseNorm) {
+            addPart(m);
+          }
+        });
+      }
+
+      // ২. TMDB Collection (belongs_to_collection) থেকে সব পার্ট আনা
+      let tmdbId = movie.tmdbId;
+      if (!tmdbId && !movie.isSeries) {
+        try {
+          const cleaned = cleanTitleForSearch(movie.title) || movie.title;
+          const sRes = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(cleaned)}`);
+          const sData = await resJsonSafe(sRes);
+          const hit = (sData?.results || []).find(r => normStr(r.title) === normStr(cleaned));
+          if (hit) tmdbId = hit.id;
+        } catch (e) {}
+      }
+
+      if (tmdbId && !movie.isSeries) {
+        try {
+          const mRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}?api_key=${TMDB_API_KEY}&language=en-US`);
+          const mData = await resJsonSafe(mRes);
+          if (mData?.belongs_to_collection?.id) {
+            const colRes = await fetch(`https://api.themoviedb.org/3/collection/${mData.belongs_to_collection.id}?api_key=${TMDB_API_KEY}&language=en-US`);
+            const colData = await resJsonSafe(colRes);
+            for (const p of (colData?.parts || [])) {
+              if (!p.poster_path) continue;
+              const sheetMatch = findSheetMatchForPart(p.id, p.title);
+              addPart(sheetMatch || buildExternalMovieObj({ ...p, media_type: 'movie' }, ''));
+            }
+          }
+        } catch (e) {}
+      }
+
+      // ৩. যদি Collection-এ সব পার্ট না থাকে (যেমন নতুন পার্ট ৩), Base Title দিয়ে TMDB সার্চ করে বাকি পার্ট খোঁজা
+      if (baseNorm.length >= 3 && partsMap.size <= 1) {
+        try {
+          const searchEndpoint = movie.isSeries ? 'tv' : 'movie';
+          const bRes = await fetch(`https://api.themoviedb.org/3/search/${searchEndpoint}?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(baseTitle)}`);
+          const bData = await resJsonSafe(bRes);
+          for (const item of (bData?.results || [])) {
+            if (!item.poster_path) continue;
+            const itemTitle = item.title || item.name || '';
+            const itemBase = normStr(extractBaseFranchiseTitle(itemTitle));
+            if (itemBase === baseNorm) {
+              const sheetMatch = findSheetMatchForPart(item.id, itemTitle);
+              addPart(sheetMatch || buildExternalMovieObj({ ...item, media_type: searchEndpoint }, ''));
+            }
+          }
+        } catch (e) {}
+      }
+
+      // বর্তমান মুভিটিকেও লিস্টে নিশ্চিত করা (যাতে পার্টগুলো সিরিয়ালে থাকে)
+      addPart(movie);
+
+      const finalParts = Array.from(partsMap.values()).sort((a, b) => {
+        const yA = parseInt(a.year || '9999', 10);
+        const yB = parseInt(b.year || '9999', 10);
+        if (yA !== yB) return yA - yB;
+        return a.title.localeCompare(b.title);
+      });
+
+      // কমপক্ষে ২টি পার্ট থাকলে তবেই সেকশন দেখাবে
+      if (finalParts.length < 2) {
+        section.style.display = 'none';
+        return;
+      }
+
+      currentRelatedParts = finalParts;
+      section.style.display = 'block';
+      row.innerHTML = finalParts.map((p, idx) => {
+        const isCurrent = (p.id === movie.id && p.isFromSheet === movie.isFromSheet) ||
+                          (p.tmdbId && movie.tmdbId && p.tmdbId === movie.tmdbId);
+        const cleanRate = String(p.rating || '7.5').replace(/[⭐★]/g, '').trim();
+        const yearStr = p.year || '2026';
+        const posterSrc = p.image || 'https://via.placeholder.com/300x450/12131a/e11d48?text=' + encodeURIComponent(p.title);
+
+        let badgeHtml = '';
+        if (isCurrent) {
+          badgeHtml = '<span class="quality-badge current-part-badge">NOW</span>';
+        } else if (p.isFromSheet) {
+          badgeHtml = `<span class="quality-badge">${p.badge || 'SHEET'}</span>`;
+        } else {
+          badgeHtml = '<span class="quality-badge tmdb-part-badge">TMDB</span>';
+        }
+
+        return `
+          <div class="movie-card ${p.isFromSheet ? 'is-pinned' : ''}" onclick="openRelatedPart(${idx})">
+            <div class="movie-poster-wrap">
+              <div class="card-rating-badge"><span>★</span> ${cleanRate}</div>
+              ${badgeHtml}
+              <img src="${posterSrc}" alt="${p.title}" loading="lazy" onerror="handleImageError(this)">
+            </div>
+            <div class="movie-info">
+              <div class="movie-title" title="${p.title}">${p.title}</div>
+              <div class="movie-submeta">${yearStr} · ${p.isFromSheet ? 'In Sheet' : 'External'}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function resetPlayerElements() {
@@ -3179,4 +3384,4 @@
   <!-- Social Bar Ad (Loads after main content for smooth UX) -->
   <script data-cfasync="false" src="https://bancadeltempoidea.org/14/3c12a21d984165afb2e8c2dc456ef1d8"></script>
 </body>
-  </html>
+</html>
