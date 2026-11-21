@@ -163,9 +163,13 @@
     .hero-dot.active { width: 14px; border-radius: 999px; background: #e11d48; }
 
     .main-container { padding: 0 12px; }
-    .welcome-notice-bar { background: rgba(20, 21, 30, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 9px 12px; margin: 6px 0 10px 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .top-notice-ad-slot { margin: 6px 0 10px 0; }
+    .welcome-notice-bar { background: rgba(20, 21, 30, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 9px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .welcome-notice-bar p { font-size: 11.5px; line-height: 1.4; color: #e2e8f0; }
     .notice-close-btn { background: rgba(255, 255, 255, 0.12); border: none; color: #fff; font-size: 10.5px; font-weight: bold; padding: 4px 8px; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+    .top-banner-ad-wrap { width: 100%; min-height: 54px; background: rgba(18, 19, 26, 0.8); border: 1px solid var(--border-color); border-radius: 10px; display: none; justify-content: center; align-items: center; padding: 2px 0; overflow: hidden; }
+    .detail-banner-ad-wrap { margin: 14px 14px 2px 14px; min-height: 56px; background: rgba(18, 19, 26, 0.85); border: 1px solid var(--border-color); border-radius: 10px; display: flex; justify-content: center; align-items: center; padding: 3px; overflow: hidden; }
+
     .viral-btn-wrap { margin-bottom: 12px; }
     .viral-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: linear-gradient(135deg, #e11d48, #f97316); color: #fff; font-weight: 800; font-size: 13px; border-radius: 999px; text-decoration: none; cursor: pointer; box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3); }
 
@@ -173,7 +177,6 @@
     .section-title { font-size: 15px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px; }
     .see-all-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: #e4e4e7; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; cursor: pointer; }
 
-    /* Same poster sizes as File 1 */
     .horizontal-scroll-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
     .horizontal-scroll-row::-webkit-scrollbar { display: none; }
     .horizontal-scroll-row .movie-card { flex: 0 0 130px; }
@@ -226,9 +229,10 @@
     .cine-hero-banner { width: 100%; height: 225px; position: relative; background-size: cover; background-position: center; overflow: hidden; }
     .cine-hero-banner.banner-fs-active { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; z-index: 9999 !important; background-color: #000 !important; background-image: none !important; }
     .cine-hero-banner:fullscreen { width: 100vw !important; height: 100vh !important; background-color: #000 !important; background-image: none !important; }
-    .cine-hero-bg-media { position: absolute; top: 50%; left: 50%; width: max(130%, 420px); height: max(145%, 56.25vw); transform: translate(-50%, -50%); object-fit: cover; filter: brightness(1.18); pointer-events: none; z-index: 1; }
+    .cine-hero-bg-media { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform: translate(-50%, -50%); object-fit: cover; filter: contrast(1.04) saturate(1.05); pointer-events: none; z-index: 1; }
+    iframe.cine-hero-bg-media { width: max(100%, calc(225px * 16 / 9)); height: max(100%, 56.25vw); }
     .cine-hero-banner.banner-fs-active .cine-hero-bg-media,
-    .cine-hero-banner:fullscreen .cine-hero-bg-media { width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; transform: none !important; object-fit: contain !important; pointer-events: auto !important; filter: brightness(1.08); }
+    .cine-hero-banner:fullscreen .cine-hero-bg-media { width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; transform: none !important; object-fit: contain !important; pointer-events: auto !important; filter: none !important; }
     .cine-hero-banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, #050507 0%, rgba(5, 5, 7, 0.25) 22%, transparent 45%); z-index: 2; pointer-events: none; }
     .cine-hero-banner.banner-fs-active::after,
     .cine-hero-banner:fullscreen::after { display: none; }
@@ -248,7 +252,7 @@
     .cine-details-desc-box { font-size: 12px; color: #e4e4e7; line-height: 1.6; background: #12131a; border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; margin-top: 6px; }
     .cine-details-desc-box div { margin-bottom: 3px; }
 
-    .cine-action-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 16px 14px 10px 14px; }
+    .cine-action-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 14px 14px 10px 14px; }
     .cine-btn { padding: 12px; border-radius: 999px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; border: none; text-decoration: none; }
     .btn-watch-online { background: linear-gradient(135deg, #e11d48, #be123c); color: #fff; font-size: 14px; box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4); }
     .btn-download { background: linear-gradient(135deg, #16a34a, #15803d); color: #fff; }
@@ -321,6 +325,27 @@
     .cv-slider-popup { position: absolute; right: 12px; bottom: 52px; background: rgba(15, 16, 24, 0.94); border: 1px solid var(--glass-border); padding: 8px 12px; border-radius: 999px; display: none; align-items: center; gap: 8px; z-index: 30; }
     .cv-slider-popup input { width: 95px; accent-color: #facc15; cursor: pointer; }
 
+    .audio-codec-warning {
+      display: none;
+      margin-top: 8px;
+      background: rgba(249, 115, 22, 0.14);
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .audio-codec-warning p { font-size: 11.5px; color: #fed7aa; line-height: 1.45; margin-bottom: 8px; }
+    .audio-ext-btn {
+      background: linear-gradient(135deg, #f97316, #e11d48);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .player-control-group { margin-top: 8px; display: flex; flex-direction: column; gap: 7px; }
     .player-sliders-row { display: none; flex-direction: column; gap: 6px; }
     .media-control-bar { display: flex; align-items: center; justify-content: center; gap: 10px; background: #14151c; border: 1px solid var(--border-color); padding: 7px 14px; border-radius: 999px; }
@@ -356,6 +381,8 @@
     .tg-second-bot-btn { flex: 1.4; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; border: none; padding: 9px; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; }
 
     .ad-unlock-box { background: #0a0a0f; border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 12px; }
+    .unlock-progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; margin-bottom: 11px; }
+    .unlock-progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #e11d48, #f97316, #22c55e); border-radius: 999px; transition: width 0.35s ease; }
     .ad-step-btn { width: 100%; padding: 13px; border: none; border-radius: 999px; font-size: 13.5px; font-weight: 800; cursor: pointer; color: #fff; background: linear-gradient(135deg, #e11d48, #be123c); transition: all 0.2s ease; }
     .ad-step-btn:disabled { background: #3f3f46; cursor: not-allowed; opacity: 0.85; }
     .quality-options-list { display: flex; flex-direction: column; gap: 10px; }
@@ -364,8 +391,97 @@
     .indicator-light { width: 10px; height: 10px; border-radius: 50%; }
     .light-blue { background-color: #22c55e; }
 
-    .social-ad-toast { position: fixed; bottom: 75px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #e11d48, #f97316); color: #fff; padding: 10px 16px; border-radius: 30px; font-size: 12px; font-weight: 800; box-shadow: 0 10px 25px rgba(0,0,0,0.8); z-index: 9999; display: none; align-items: center; gap: 8px; animation: bounceToast 0.4s ease; white-space: nowrap; }
-    @keyframes bounceToast { 0% { transform: translate(-50%, 20px); opacity: 0; } 100% { transform: translate(-50%, 0); opacity: 1; } }
+    /* 10-Second Verification + 300x250 Banner Overlay Modal */
+    .monetag-overlay-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 4, 8, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 9500;
+      justify-content: center;
+      align-items: center;
+      padding: 14px;
+    }
+    .monetag-ad-card {
+      width: 100%;
+      max-width: 380px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: linear-gradient(160deg, #161824 0%, #0b0c12 100%);
+      border: 1px solid rgba(225, 29, 72, 0.55);
+      border-radius: 18px;
+      padding: 14px 13px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
+    }
+    .monetag-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .monetag-timer-pill {
+      background: rgba(250, 204, 21, 0.16);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      color: #facc15;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .monetag-close-x {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .monetag-close-x.ready {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border-color: #22c55e;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.55);
+    }
+    .monetag-offer-box {
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px dashed rgba(249, 115, 22, 0.55);
+      border-radius: 12px;
+      padding: 12px 10px;
+      margin-bottom: 10px;
+    }
+    .monetag-offer-box h4 { font-size: 14.5px; color: #fff; font-weight: 800; margin-bottom: 4px; }
+    .monetag-offer-box p { font-size: 11.5px; color: #cbd5e1; line-height: 1.45; margin-bottom: 10px; }
+    .modal-ad-300x250-wrap {
+      width: 100%;
+      max-width: 300px;
+      min-height: 250px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0a0b10;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .monetag-visit-btn {
+      width: 100%;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #e11d48, #f97316);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.4);
+    }
+    .monetag-warn-note { font-size: 11px; color: #fca5a5; line-height: 1.4; }
 
     .request-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
     .request-box { background: #12131a; border: 1px solid var(--glass-border); padding: 20px; border-radius: 14px; width: 100%; max-width: 390px; text-align: center; position: relative; }
@@ -390,7 +506,7 @@
 <body>
 
   <!-- Premium Shatter-Assemble Splash Overlay -->
-  <div class="cine-splash-overlay" id="cineSplashOverlay" onclick="this.classList.add('hide')">
+  <div class="cine-splash-overlay" id="cineSplashOverlay" onclick="hideSplashAndStartCycle()">
     <div class="splash-burst-ring"></div>
     <div class="splash-card">
       <div class="splash-logo-wrap">
@@ -423,11 +539,6 @@
       <div class="splash-sub">HD English Movies &amp; Web Series</div>
       <div class="splash-bar-track"><div class="splash-bar-fill"></div></div>
     </div>
-  </div>
-
-  <div class="social-ad-toast" id="socialAdToast">
-    <span>📢 Click the ad once and come right back!</span>
-    <span onclick="this.parentElement.style.display='none'" style="cursor:pointer; font-weight:900;">✕</span>
   </div>
 
   <header class="top-glass-header" id="topGlassHeader">
@@ -522,9 +633,23 @@
   </section>
 
   <div class="main-container" id="homeSectionsContainer">
-    <div class="welcome-notice-bar" id="topWelcomeNotice">
-      <p>📢 <b>Dear Viewer:</b> Use the search box to find any movie or series. If you can't find it, tap the <b>Request</b> button below to submit a request.</p>
-      <button class="notice-close-btn" onclick="closeNotice()">Got it ✕</button>
+    <div class="top-notice-ad-slot" id="topNoticeAdSlot">
+      <div class="welcome-notice-bar" id="topWelcomeNotice">
+        <p>📢 <b>Dear Viewer:</b> Use the search box to find any movie or series. If you can't find it, tap the <b>Request</b> button below to submit a request.</p>
+        <button class="notice-close-btn" onclick="closeNotice()">Got it ✕</button>
+      </div>
+      <div class="top-banner-ad-wrap" id="topBannerAdBox">
+        <script>
+          atOptions = {
+            'key' : '2f860c633961a49b1d05f3575a456ec8',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bancadeltempoidea.org/22/2f860c633961a49b1d05f3575a456ec8"></script>
+      </div>
     </div>
 
     <div class="viral-btn-wrap">
@@ -635,6 +760,20 @@
       </div>
     </div>
 
+    <!-- 320x50 Banner Ad Below Movie Details -->
+    <div class="detail-banner-ad-wrap" id="detailBannerAdBox">
+      <script>
+        atOptions = {
+          'key' : '2f860c633961a49b1d05f3575a456ec8',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script src="https://bancadeltempoidea.org/22/2f860c633961a49b1d05f3575a456ec8"></script>
+    </div>
+
     <div class="cine-action-grid">
       <button class="cine-btn btn-watch-online" onclick="playOnlineMovie()">▶️ Watch Full Movie</button>
       <button class="cine-btn btn-download" onclick="scrollToDownload()">📥 Download Options</button>
@@ -654,7 +793,6 @@
       <div class="cast-list" id="castList"></div>
     </div>
 
-    <!-- Movie Scenes Gallery (Same as File 1) -->
     <div class="scenes-section" id="scenesSection">
       <div class="scenes-title">📸 Movie Scenes</div>
       <div class="scenes-list" id="scenesList"></div>
@@ -677,7 +815,7 @@
       <iframe class="cine-video-frame" id="cineVideoPlayer" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
 
       <div class="direct-video-box" id="directVideoBox" oncontextmenu="return false;">
-        <video id="cineDirectVideo" playsinline preload="metadata" controlsList="nodownload noplaybackrate" disablePictureInPicture disableRemotePlayback oncontextmenu="return false;" onclick="toggleCustomVideoPlay()"></video>
+        <video id="cineDirectVideo" playsinline preload="metadata" controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture disableRemotePlayback oncontextmenu="return false;" onclick="toggleCustomVideoPlay()"></video>
         <div class="cv-slider-popup" id="cvBrightnessPopup">
           <span style="font-size:12px;">☀️</span>
           <input type="range" id="cvBrightnessRange" min="30" max="220" value="100" oninput="setPlayerBrightness(this.value)">
@@ -705,6 +843,11 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="audio-codec-warning" id="audioCodecWarningBar">
+        <p>🔇 This video's audio codec (AC3 / Dolby) is not supported by your mobile browser. Tap below to play with full sound in MX Player or VLC:</p>
+        <button class="audio-ext-btn" id="btnOpenExternalAudioPlayer">🔊 Play with Sound (VLC / MX Player)</button>
       </div>
 
       <div id="directExternalBar" style="display:none; margin-top:8px; text-align:center;">
@@ -753,8 +896,9 @@
       </div>
 
       <div class="ad-unlock-box" id="adUnlockBox">
+        <div class="unlock-progress-track"><div class="unlock-progress-fill" id="unlockProgressFill"></div></div>
         <p id="adStepNotice" style="font-size:12.5px; color:#cbd5e1; margin-bottom:12px;">Click the button below to unlock download links:</p>
-        <button class="ad-step-btn" id="adStepBtn" onclick="handleAdUnlockStep()">🚀 Unlock Download Links in 1 Click (Step 1/2)</button>
+        <button class="ad-step-btn" id="adStepBtn" onclick="handleAdUnlockStep()">🚀 Unlock Download Links (Step 1/3)</button>
       </div>
 
       <div class="quality-options-list" id="qualityContainer" style="display: none;"></div>
@@ -763,6 +907,35 @@
         <div class="related-parts-title">🎞️ All Parts / Franchise Collection</div>
         <div class="related-parts-row" id="relatedPartsRow"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- 10-Second Verification + 300x250 Banner Overlay Modal -->
+  <div class="monetag-overlay-modal" id="monetagUnlockModal">
+    <div class="monetag-ad-card">
+      <div class="monetag-top-row">
+        <span class="monetag-timer-pill" id="monetagTimerPill">⏳ Please wait: 10s</span>
+        <button type="button" class="monetag-close-x" id="monetagCloseBtn" onclick="handleMonetagCloseClick()">✕</button>
+      </div>
+      <div class="monetag-offer-box">
+        <span class="sponsor-tag" style="margin-bottom:6px;">SPONSOR AD</span>
+        <h4 id="monetagStepHeading">🔓 Step Verification in Progress...</h4>
+        <p id="monetagStepDesc">View the ad below for 10 seconds. Once the timer ends, click the <b>✕</b> button above to continue.</p>
+        <div class="modal-ad-300x250-wrap" id="modalAd300x250Wrap">
+          <script>
+            atOptions = {
+              'key' : '6ca0efc6f46a904645aa70e1f122ac83',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://bancadeltempoidea.org/22/6ca0efc6f46a904645aa70e1f122ac83"></script>
+        </div>
+        <button type="button" class="monetag-visit-btn" id="monetagOfferBtn" onclick="openCurrentMonetagLink()">🎁 View Sponsor Offer (Click Here)</button>
+      </div>
+      <div class="monetag-warn-note">⚠️ Closing with <b>✕</b> before 10 seconds finishes will reset back to Step 1!</div>
     </div>
   </div>
 
@@ -839,9 +1012,19 @@
     const GOOGLE_SHEET_ID = "1oYFPmPANq7lh3aHdQv6uFlwgOjK8S0Zv2lq2QPXYStE";
     const TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8";
     const ADMIN_EMAIL = "blogor6@gmail.com";
+
+    // Adsterra Links & Auto Backups
     const ENTRY_AD_URL = "https://directyp.org/4/4efb0f438c711d6932662cc00c8e4d56";
     const NON_SHEET_AD1_URL = "https://asiafilm.org/4/a555ec6bc7d6af27618f9ba45943fffd";
     const NON_SHEET_AD2_URL = "https://asiafilm.org/4/a555ec6bc7d6af27618f9ba45943fffd";
+    const BACKUP_ADSTERRA_1 = "https://auctionr.org/4/e987faae17c1331cc1fe83762de3c190";
+    const BACKUP_ADSTERRA_2 = "https://asiafilm.org/4/c998294d6d6bf0c66ee377f41e144fa3";
+
+    // Monetag Direct Links
+    const MONETAG_DIRECT_MAIN = "https://uplcm.com/4/12312628";
+    const MONETAG_BACKUP_1 = "https://uplcm.com/4/12154636";
+    const MONETAG_BACKUP_2 = "https://uplcm.com/4/12312510";
+
     const USER_SEARCH_TTL = 2 * 24 * 60 * 60 * 1000;
 
     const GENRE_MAP = {
@@ -867,15 +1050,68 @@
     let preRollTimer = null;
     let currentHeroMedia = null;
     let heroBgSoundOn = false;
+    let audioCheckShownForUrl = '';
+
+    // Top Notice + 320x50 Banner Cycle (3s notice -> 5s banner -> repeat)
+    let topNoticeCycleTimer = null;
+    let topNoticeClosed = false;
+    let topNoticeCycleStarted = false;
+
+    // 4-Step Adsterra + 10-Second Verification Modal State
+    let waitingReturnStep = 0;
+    let returnFallbackTimer = null;
+    let monetagCountdownTimer = null;
+    let monetagTimeLeft = 10;
+    let monetagCompleted = false;
+    let monetagActiveStep = 1;
+    let monetagVignetteInjected = false;
 
     const isInsideTelegram = !!(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData);
     const tg = isInsideTelegram ? window.Telegram.WebApp : null;
     if (tg) { try { tg.ready(); tg.expand(); } catch (e) {} }
 
+    function injectMonetagVignette() {
+      if (monetagVignetteInjected) return;
+      monetagVignetteInjected = true;
+      try {
+        (function(s){
+          s.dataset.zone = '12312621';
+          s.src = 'https://n6wxm.com/vignette.min.js';
+        })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+      } catch (e) {}
+    }
+
+    function startTopNoticeAdCycle() {
+      if (topNoticeCycleStarted || topNoticeClosed) return;
+      const noticeEl = document.getElementById('topWelcomeNotice');
+      const adEl = document.getElementById('topBannerAdBox');
+      if (!noticeEl || !adEl) return;
+      topNoticeCycleStarted = true;
+
+      function runCycle() {
+        if (topNoticeClosed) return;
+        noticeEl.style.display = 'flex';
+        adEl.style.display = 'none';
+        topNoticeCycleTimer = setTimeout(() => {
+          if (topNoticeClosed) return;
+          noticeEl.style.display = 'none';
+          adEl.style.display = 'flex';
+          topNoticeCycleTimer = setTimeout(runCycle, 5000);
+        }, 3000);
+      }
+      runCycle();
+    }
+
+    function hideSplashAndStartCycle() {
+      const splash = document.getElementById('cineSplashOverlay');
+      if (splash) splash.classList.add('hide');
+      startTopNoticeAdCycle();
+      injectMonetagVignette();
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        const splash = document.getElementById('cineSplashOverlay');
-        if (splash) splash.classList.add('hide');
+        hideSplashAndStartCycle();
       }, 2200);
     });
 
@@ -889,8 +1125,18 @@
         renderBotFeedbackState();
       }
     }
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncBotReturnUI(); });
-    window.addEventListener('focus', syncBotReturnUI);
+    function handleUserReturnToSite() {
+      syncBotReturnUI();
+      if (waitingReturnStep > 0 && document.getElementById('cineDetailView').style.display === 'block') {
+        const step = waitingReturnStep;
+        waitingReturnStep = 0;
+        clearTimeout(returnFallbackTimer);
+        returnFallbackTimer = null;
+        openMonetagCountdownOverlay(step);
+      }
+    }
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') handleUserReturnToSite(); });
+    window.addEventListener('focus', handleUserReturnToSite);
 
     function toggleSearchPanel() {
       const panel = document.getElementById('searchBarPanel');
@@ -924,28 +1170,13 @@
       return result.filter(Boolean);
     }
 
-    (function monitorSocialBarAd() {
-      let toastShown = false;
-      const observer = new MutationObserver((mutations) => {
-        if (toastShown) return;
-        for (const mutation of mutations) {
-          for (const node of mutation.addedNodes) {
-            if (node.nodeType === 1 && !node.closest('#ad300x250Wrap') && !node.closest('#nativeBannerWrap')) {
-              const isSocialAd = node.matches?.("iframe[src*='bancadeltempoidea'], div[class*='bancadeltempoidea']") || node.querySelector?.("iframe[src*='bancadeltempoidea']");
-              if (isSocialAd) {
-                toastShown = true;
-                const toast = document.getElementById('socialAdToast');
-                if (toast) { toast.style.display = 'flex'; setTimeout(() => { toast.style.display = 'none'; }, 7000); }
-                observer.disconnect(); return;
-              }
-            }
-          }
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    })();
-
-    function closeNotice() { document.getElementById('topWelcomeNotice').style.display = 'none'; }
+    function closeNotice() {
+      topNoticeClosed = true;
+      clearTimeout(topNoticeCycleTimer);
+      topNoticeCycleTimer = null;
+      const slot = document.getElementById('topNoticeAdSlot');
+      if (slot) slot.style.display = 'none';
+    }
     function handleImageError(img) { img.onerror = null; img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100%" height="100%" fill="%2312131a"/><text x="50%" y="50%" fill="%23e11d48" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="middle" dy=".3em">🎬 HD Movie</text></svg>'; }
     function openSafeUrl(url) {
       if (!url || url === '#' || !/^https?:\/\//i.test(url)) return;
@@ -1269,8 +1500,8 @@
               hasExplicitRating,
               image: getCellVal(c, 3),
               backdrop: getCellVal(c, 3),
-              ad1: getCellVal(c, 4) || ENTRY_AD_URL,
-              ad2: getCellVal(c, 5) || ENTRY_AD_URL,
+              ad1: getCellVal(c, 4) || BACKUP_ADSTERRA_1,
+              ad2: getCellVal(c, 5) || BACKUP_ADSTERRA_2,
               badge: getCellVal(c, 10) || (isSeries ? 'SERIES' : '1080p'),
               sortOrder: null,
               pinned: isPinned,
@@ -1337,8 +1568,8 @@
               hasExplicitRating: !!m.rating,
               image: m.image || '',
               backdrop: m.image || '',
-              ad1: m.ad1 || ENTRY_AD_URL,
-              ad2: m.ad2 || ENTRY_AD_URL,
+              ad1: (m.ad1 && String(m.ad1).trim()) ? String(m.ad1).trim() : BACKUP_ADSTERRA_1,
+              ad2: (m.ad2 && String(m.ad2).trim()) ? String(m.ad2).trim() : BACKUP_ADSTERRA_2,
               badge: m.badge || (isSeries ? 'SERIES' : '1080p'),
               sortOrder,
               pinned: isPinned,
@@ -1489,7 +1720,7 @@
 
     function buildExternalMovieObj(item, fallbackYear) {
       const isTv = item.media_type === 'tv' || !!item.first_air_date, releaseDate = item.release_date || item.first_air_date || (fallbackYear ? `${fallbackYear}-01-01` : '2026'), year = releaseDate ? releaseDate.split('-')[0] : '2026', titleName = item.title || item.name, ratingVal = (item.vote_average && item.vote_average > 0) ? item.vote_average.toFixed(1) : '7.5', genres = (item.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean).slice(0, 3).join(', ') || 'Action, Drama', actualLang = ACCURATE_LANG_MAP[item.original_language] || "English";
-      return { id: item.id, tmdbId: item.id, mediaType: isTv ? 'tv' : 'movie', originalLanguage: item.original_language || 'en', title: titleName, category: isTv ? 'Series' : 'Movie', rating: `⭐ ${ratingVal}`, year, overview: item.overview || `${actualLang} · Watch & Download HD Movie`, image: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '', backdrop: (item.backdrop_path || item.poster_path) ? `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}` : '', badge: isTv ? 'SERIES' : `${year} HD`, details: formatMovieDetailsHTML(ratingVal, genres, actualLang, '1080p WEB-DL', '1920x1080 FHD', releaseDate), links: [], structuredEpisodes: [], ad1: NON_SHEET_AD1_URL, ad2: NON_SHEET_AD2_URL, isSeries: isTv, isFromSheet: false };
+      return { id: item.id, tmdbId: item.id, mediaType: isTv ? 'tv' : 'movie', originalLanguage: item.original_language || 'en', title: titleName, category: isTv ? 'Series' : 'Movie', rating: `⭐ ${ratingVal}`, year, overview: item.overview || `${actualLang} · Watch & Download HD Movie`, image: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '', backdrop: (item.backdrop_path || item.poster_path) ? `https://image.tmdb.org/t/p/original${item.backdrop_path || item.poster_path}` : '', badge: isTv ? 'SERIES' : `${year} HD`, details: formatMovieDetailsHTML(ratingVal, genres, actualLang, '1080p WEB-DL', '1920x1080 FHD', releaseDate), links: [], structuredEpisodes: [], ad1: BACKUP_ADSTERRA_1, ad2: BACKUP_ADSTERRA_2, isSeries: isTv, isFromSheet: false };
     }
 
     async function fetchTmdbForCategory(cat) {
@@ -1637,16 +1868,16 @@
         if (bi) {
           const hashParam = currentHeroMedia.hash ? `&h=${currentHeroMedia.hash}` : '';
           bi.src = withSound
-            ? `https://player.vimeo.com/video/${currentHeroMedia.id}?autoplay=1&muted=0&loop=1&playsinline=1&autopause=0&dnt=1${hashParam}`
-            : `https://player.vimeo.com/video/${currentHeroMedia.id}?autoplay=1&muted=1&loop=1&playsinline=1&autopause=0&background=1&dnt=1${hashParam}`;
+            ? `https://player.vimeo.com/video/${currentHeroMedia.id}?autoplay=1&muted=0&loop=1&playsinline=1&autopause=0&quality=1080p&dnt=1${hashParam}`
+            : `https://player.vimeo.com/video/${currentHeroMedia.id}?autoplay=1&muted=1&loop=1&playsinline=1&autopause=0&background=1&quality=1080p&dnt=1${hashParam}`;
           bi.style.display = 'block';
         }
       } else if (currentHeroMedia.type === 'youtube') {
         if (bv) { try { bv.pause(); } catch (e) {} bv.removeAttribute('src'); bv.style.display = 'none'; }
         if (bi) {
           bi.src = withSound
-            ? `https://www.youtube-nocookie.com/embed/${currentHeroMedia.id}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&loop=1&playlist=${currentHeroMedia.id}`
-            : `https://www.youtube-nocookie.com/embed/${currentHeroMedia.id}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&loop=1&playlist=${currentHeroMedia.id}`;
+            ? `https://www.youtube-nocookie.com/embed/${currentHeroMedia.id}?autoplay=1&mute=0&vq=hd1080&hd=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&loop=1&playlist=${currentHeroMedia.id}`
+            : `https://www.youtube-nocookie.com/embed/${currentHeroMedia.id}?autoplay=1&mute=1&controls=0&vq=hd1080&hd=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&loop=1&playlist=${currentHeroMedia.id}`;
           bi.style.display = 'block';
         }
       }
@@ -1725,10 +1956,16 @@
           const type = movie.mediaType || (movie.isSeries ? 'tv' : 'movie');
           const vRes = await fetch(`https://api.themoviedb.org/3/${type}/${movie.tmdbId}/videos?api_key=${TMDB_API_KEY}&include_video_language=en,hi,bn,ta,te,ml,kn,ko,ja,null`);
           const data = await resJsonSafe(vRes);
-          const allVideos = (data?.results || []).filter(v => v.key);
+          const allVideos = (data?.results || [])
+            .filter(v => v.key)
+            .sort((a, b) => (b.size || 0) - (a.size || 0));
           tmdbVimeo = allVideos.find(v => v.site === 'Vimeo' && v.type === 'Trailer') || allVideos.find(v => v.site === 'Vimeo');
           const ytVideos = allVideos.filter(v => v.site === 'YouTube');
-          tmdbYouTube = ytVideos.find(v => v.iso_639_1 === 'en' && v.type === 'Trailer') || ytVideos.find(v => v.type === 'Trailer') || ytVideos.find(v => v.type === 'Teaser') || ytVideos[0];
+          tmdbYouTube = ytVideos.find(v => v.iso_639_1 === 'en' && v.type === 'Trailer' && /official/i.test(v.name || ''))
+            || ytVideos.find(v => v.iso_639_1 === 'en' && v.type === 'Trailer')
+            || ytVideos.find(v => v.type === 'Trailer')
+            || ytVideos.find(v => v.type === 'Teaser')
+            || ytVideos[0];
         } catch (e) {}
       }
       if (!currentMovie || String(currentMovie.id) !== String(openedId)) return;
@@ -1756,7 +1993,8 @@
       loadMovieScenesGallery(currentMovie);
       loadRelatedParts(currentMovie);
       startHeroBgPreview(currentMovie);
-      currentUnlockStep = 1; clearInterval(stepCountdownTimer); document.getElementById('qualityContainer').style.display = 'none';
+      resetUnlockFlowUI();
+      document.getElementById('qualityContainer').style.display = 'none';
 
       const tgAlert = document.getElementById('tgFeedbackAlert'), unlockBox = document.getElementById('adUnlockBox');
       if (currentMovie.isFromSheet) {
@@ -1770,8 +2008,6 @@
         }
       }
 
-      document.getElementById('adStepBtn').disabled = false; document.getElementById('adStepBtn').innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
-      document.getElementById('adStepNotice').innerText = 'Click the button below to unlock download links:';
       const detailView = document.getElementById('cineDetailView'); detailView.style.display = 'block'; detailView.scrollTop = 0;
       if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
       if (tg?.BackButton) { tg.BackButton.show(); tg.BackButton.onClick(closeCineDetail); }
@@ -1828,10 +2064,46 @@
     function formatVideoTime(sec) { if (!sec || isNaN(sec)) return '00:00'; sec = Math.floor(sec); const h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60), s = sec%60; return h > 0 ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }
     let isUserSeeking = false;
     function updateSeekBarFill(seekBar, pct) { if (seekBar) seekBar.style.background = `linear-gradient(to right, #e11d48 0%, #e11d48 ${pct}%, rgba(255,255,255,0.28) ${pct}%, rgba(255,255,255,0.28) 100%)`; }
+
+    function checkUnsupportedAudioCodec(video) {
+      if (!video || !video.src || video.paused || video.currentTime < 1.5) return;
+      if (audioCheckShownForUrl === video.src) return;
+      const decodedAudio = typeof video.webkitAudioDecodedByteCount === 'number' ? video.webkitAudioDecodedByteCount : null;
+      const noMozAudio = video.mozHasAudio === false;
+      const noAudioTrack = video.audioTracks && video.audioTracks.length === 0;
+      if (decodedAudio === 0 || noMozAudio || noAudioTrack) {
+        audioCheckShownForUrl = video.src;
+        const warnBar = document.getElementById('audioCodecWarningBar');
+        const extBtn = document.getElementById('btnOpenExternalAudioPlayer');
+        if (warnBar && extBtn) {
+          warnBar.style.display = 'block';
+          const streamUrl = video.src;
+          extBtn.onclick = () => openExternalStreamPlayer(streamUrl);
+        }
+      }
+    }
+
+    function openExternalStreamPlayer(streamUrl) {
+      if (!streamUrl) return;
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      if (isAndroid) {
+        const cleanUrl = streamUrl.replace(/^https?:\/\//i, '');
+        const scheme = /^https:/i.test(streamUrl) ? 'https' : 'http';
+        window.location.href = `intent://${cleanUrl}#Intent;scheme=${scheme};action=android.intent.action.VIEW;type=video/*;end`;
+      } else {
+        openSafeUrl(streamUrl);
+      }
+    }
+
     (function initCustomVideoEvents() {
       const video = document.getElementById('cineDirectVideo'), playBtn = document.getElementById('customPlayBtn'), seekBar = document.getElementById('customSeekBar'), timeText = document.getElementById('customTimeText'), muteBtn = document.getElementById('customMuteBtn');
       if (!video) return;
-      video.onplay = () => { if (playBtn) playBtn.innerText = '⏸'; }; video.onpause = () => { if (playBtn) playBtn.innerText = '▶'; };
+      video.onplay = () => {
+        if (playBtn) playBtn.innerText = '⏸';
+        const volVal = parseInt(document.getElementById('playerVolumeSlider')?.value || '100', 10);
+        if (video.muted && volVal > 0) video.muted = false;
+      };
+      video.onpause = () => { if (playBtn) playBtn.innerText = '▶'; };
       video.onvolumechange = () => {
         if (muteBtn) muteBtn.innerText = (video.muted || video.volume === 0) ? '🔇' : '🔊';
         const pct = video.muted ? 0 : Math.round((video.volume ?? 1) * 100);
@@ -1840,8 +2112,23 @@
         if (s1) s1.value = pct; if (t1) t1.innerText = `${pct}%`;
         if (s2) s2.value = pct; if (t2) t2.innerText = `${pct}%`;
       };
-      const sync = () => { if (!video.duration || isNaN(video.duration)) return; const pct = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100)); if (!isUserSeeking && seekBar) { seekBar.value = pct; updateSeekBarFill(seekBar, pct); } if (timeText) timeText.innerText = `${formatVideoTime(video.currentTime)} / ${formatVideoTime(video.duration)}`; };
-      video.onloadedmetadata = sync; video.ondurationchange = sync; video.ontimeupdate = sync;
+      const sync = () => {
+        if (!video.duration || isNaN(video.duration)) return;
+        const pct = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
+        if (!isUserSeeking && seekBar) { seekBar.value = pct; updateSeekBarFill(seekBar, pct); }
+        if (timeText) timeText.innerText = `${formatVideoTime(video.currentTime)} / ${formatVideoTime(video.duration)}`;
+        checkUnsupportedAudioCodec(video);
+      };
+      video.onloadedmetadata = () => {
+        if (video.audioTracks && video.audioTracks.length > 0) {
+          let hasEnabled = false;
+          for (let i = 0; i < video.audioTracks.length; i++) if (video.audioTracks[i].enabled) hasEnabled = true;
+          if (!hasEnabled) video.audioTracks[0].enabled = true;
+        }
+        sync();
+      };
+      video.ondurationchange = sync;
+      video.ontimeupdate = sync;
       if (seekBar) {
         const s = () => { isUserSeeking = true; }, e = () => { if (video.duration && !isNaN(video.duration)) video.currentTime = (parseFloat(seekBar.value)/100)*video.duration; isUserSeeking = false; };
         seekBar.addEventListener('touchstart', s, { passive: true }); seekBar.addEventListener('mousedown', s);
@@ -1884,15 +2171,26 @@
     }
 
     function skipCustomVideo(sec) { const v = document.getElementById('cineDirectVideo'); if (v && v.duration && !isNaN(v.duration)) v.currentTime = Math.min(v.duration, Math.max(0, v.currentTime + sec)); }
-    function toggleCustomVideoPlay() { const v = document.getElementById('cineDirectVideo'); if (v) { if (v.paused) v.play().catch(()=>{}); else v.pause(); } }
+    function toggleCustomVideoPlay() {
+      const v = document.getElementById('cineDirectVideo');
+      if (v) {
+        if (v.paused) {
+          const volVal = parseInt(document.getElementById('playerVolumeSlider')?.value || '100', 10);
+          if (volVal > 0) v.muted = false;
+          v.play().catch(()=>{});
+        } else v.pause();
+      }
+    }
     function toggleCustomVideoMute() { const v = document.getElementById('cineDirectVideo'); if (v) v.muted = !v.muted; }
     function toggleCustomVideoFullscreen() { const b = document.getElementById('directVideoBox'), v = document.getElementById('cineDirectVideo'); if (!b) return; if (document.fullscreenElement || document.webkitFullscreenElement) { if (document.exitFullscreen) document.exitFullscreen(); else if (document.webkitExitFullscreen) document.webkitExitFullscreen(); } else { if (b.requestFullscreen) b.requestFullscreen().catch(()=>{}); else if (b.webkitRequestFullscreen) b.webkitRequestFullscreen(); else if (v && v.webkitEnterFullscreen) v.webkitEnterFullscreen(); } }
 
     function resetPlayerElements() {
       clearInterval(preRollTimer);
       preRollTimer = null;
-      const ip = document.getElementById('cineVideoPlayer'), db = document.getElementById('directVideoBox'), dv = document.getElementById('cineDirectVideo'), sm = document.getElementById('trailerStatusMsg'), eb = document.getElementById('directExternalBar'), qb = document.getElementById('qualitySwitchBar'), sb = document.getElementById('customSeekBar'), tt = document.getElementById('customTimeText'), pb = document.getElementById('customPlayBtn'), pSliders = document.getElementById('playerSlidersRow'), bPop = document.getElementById('cvBrightnessPopup'), sPop = document.getElementById('cvSoundPopup'), prBox = document.getElementById('preRollAdBox');
+      audioCheckShownForUrl = '';
+      const ip = document.getElementById('cineVideoPlayer'), db = document.getElementById('directVideoBox'), dv = document.getElementById('cineDirectVideo'), sm = document.getElementById('trailerStatusMsg'), eb = document.getElementById('directExternalBar'), qb = document.getElementById('qualitySwitchBar'), sb = document.getElementById('customSeekBar'), tt = document.getElementById('customTimeText'), pb = document.getElementById('customPlayBtn'), pSliders = document.getElementById('playerSlidersRow'), bPop = document.getElementById('cvBrightnessPopup'), sPop = document.getElementById('cvSoundPopup'), prBox = document.getElementById('preRollAdBox'), aw = document.getElementById('audioCodecWarningBar');
       if (prBox) prBox.style.display = 'none';
+      if (aw) aw.style.display = 'none';
       if (ip) { ip.src = ''; ip.style.display = 'block'; ip.style.filter = 'brightness(1)'; }
       if (db) db.style.display = 'none';
       if (dv) { dv.onerror = null; dv.style.filter = 'brightness(1)'; try { dv.pause(); } catch(e) {} dv.removeAttribute('src'); dv.load(); }
@@ -1905,7 +2203,7 @@
     }
     function closeCineDetail() {
       localStorage.removeItem('cinevibeen_last_id');
-      clearInterval(stepCountdownTimer);
+      clearMonetagAndTimers();
       stopHeroBgPreview();
       resetPlayerElements();
       document.getElementById('cineDetailView').style.display = 'none';
@@ -1989,20 +2287,164 @@
       if (m && img) { img.src = url; m.style.display = 'flex'; }
     }
 
-    function handleAdUnlockStep() {
-      const btn = document.getElementById('adStepBtn'), notice = document.getElementById('adStepNotice');
-      if (currentUnlockStep === 1) {
-        openSafeUrl(currentMovie.isFromSheet ? (currentMovie.ad1 || ENTRY_AD_URL) : (currentMovie.ad1 || NON_SHEET_AD1_URL));
-        let t = 10; btn.disabled = true; btn.innerText = `⏳ Please wait (${t}s)...`; notice.innerText = 'Ad opened. Please wait 10 seconds...';
-        stepCountdownTimer = setInterval(() => { t--; if (t > 0) btn.innerText = `⏳ Please wait (${t}s)...`; else { clearInterval(stepCountdownTimer); currentUnlockStep = 2; btn.disabled = false; btn.innerText = '🚀 Confirm on 2nd Click (Step 2/2)'; notice.innerText = 'Step 1 completed! Now click the button below:'; } }, 1000);
-      } else if (currentUnlockStep === 2) {
-        openSafeUrl(currentMovie.isFromSheet ? (currentMovie.ad2 || ENTRY_AD_URL) : (currentMovie.ad2 || NON_SHEET_AD2_URL));
-        let t = 10; btn.disabled = true; btn.innerText = `⏳ Please wait (${t}s)...`; notice.innerText = 'Ad opened. Download links will appear in 10 seconds...';
-        stepCountdownTimer = setInterval(() => { t--; if (t > 0) btn.innerText = `⏳ Please wait (${t}s)...`; else { clearInterval(stepCountdownTimer); currentUnlockStep = 3; btn.disabled = false; btn.innerText = '🔓 View Download Qualities (3rd Click)'; notice.innerText = 'All steps completed! Click below to view quality links:'; } }, 1000);
-      } else if (currentUnlockStep === 3) {
-        if (currentMovie.isFromSheet) { document.getElementById('adUnlockBox').style.display = 'none'; renderDownloadButtons(); document.getElementById('qualityContainer').style.display = 'flex'; }
-        else openTelegramNoticeModal(currentMovie.title);
+    // === 4-Step Adsterra + 10-Second 300x250 Banner & Monetag Direct Link Verification ===
+    function clearMonetagAndTimers() {
+      clearInterval(stepCountdownTimer);
+      clearInterval(monetagCountdownTimer);
+      clearTimeout(returnFallbackTimer);
+      stepCountdownTimer = null;
+      monetagCountdownTimer = null;
+      returnFallbackTimer = null;
+      waitingReturnStep = 0;
+      monetagCompleted = false;
+      const mModal = document.getElementById('monetagUnlockModal');
+      if (mModal) mModal.style.display = 'none';
+    }
+
+    function resetUnlockFlowUI(customWarningMsg) {
+      clearMonetagAndTimers();
+      currentUnlockStep = 1;
+      const btn = document.getElementById('adStepBtn');
+      const notice = document.getElementById('adStepNotice');
+      const fill = document.getElementById('unlockProgressFill');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = '🚀 Unlock Download Links (Step 1/3)';
       }
+      if (notice) {
+        notice.innerText = customWarningMsg || 'Click the button below to unlock download links:';
+      }
+      if (fill) fill.style.width = '0%';
+    }
+
+    function getAdsterraUrlForStep(step) {
+      if (!currentMovie) return BACKUP_ADSTERRA_1;
+      if (step === 1) {
+        return currentMovie.isFromSheet ? (currentMovie.ad1 || BACKUP_ADSTERRA_1) : (currentMovie.ad1 || NON_SHEET_AD1_URL);
+      }
+      if (step === 2) {
+        return currentMovie.isFromSheet ? (currentMovie.ad2 || BACKUP_ADSTERRA_2) : (currentMovie.ad2 || NON_SHEET_AD2_URL);
+      }
+      return ENTRY_AD_URL || BACKUP_ADSTERRA_1;
+    }
+
+    function getMonetagUrlForStep(step) {
+      if (step === 1) return MONETAG_DIRECT_MAIN;
+      if (step === 2) return MONETAG_BACKUP_1;
+      return MONETAG_BACKUP_2;
+    }
+
+    function openCurrentMonetagLink() {
+      openSafeUrl(getMonetagUrlForStep(monetagActiveStep));
+    }
+
+    function openMonetagCountdownOverlay(step) {
+      injectMonetagVignette();
+      monetagActiveStep = step;
+      monetagCompleted = false;
+      monetagTimeLeft = 10;
+
+      const modal = document.getElementById('monetagUnlockModal');
+      const timerPill = document.getElementById('monetagTimerPill');
+      const closeBtn = document.getElementById('monetagCloseBtn');
+      const heading = document.getElementById('monetagStepHeading');
+      const desc = document.getElementById('monetagStepDesc');
+
+      if (heading) heading.innerText = `🔓 Step ${step}/3 Verification in Progress...`;
+      if (desc) desc.innerHTML = 'View the ad below for 10 seconds. Once the timer ends, click the <b>✕</b> button above to continue.';
+      if (timerPill) timerPill.innerText = `⏳ Please wait: ${monetagTimeLeft}s`;
+      if (closeBtn) {
+        closeBtn.classList.remove('ready');
+        closeBtn.innerText = '✕';
+      }
+      if (modal) modal.style.display = 'flex';
+
+      clearInterval(monetagCountdownTimer);
+      monetagCountdownTimer = setInterval(() => {
+        monetagTimeLeft--;
+        if (monetagTimeLeft > 0) {
+          if (timerPill) timerPill.innerText = `⏳ Please wait: ${monetagTimeLeft}s`;
+        } else {
+          clearInterval(monetagCountdownTimer);
+          monetagCountdownTimer = null;
+          monetagCompleted = true;
+          if (timerPill) timerPill.innerText = '✅ 10 seconds completed!';
+          if (closeBtn) {
+            closeBtn.classList.add('ready');
+            closeBtn.innerText = '✕ Continue';
+          }
+        }
+      }, 1000);
+    }
+
+    function handleMonetagCloseClick() {
+      clearInterval(monetagCountdownTimer);
+      monetagCountdownTimer = null;
+      const modal = document.getElementById('monetagUnlockModal');
+      if (modal) modal.style.display = 'none';
+
+      if (!monetagCompleted) {
+        resetUnlockFlowUI('⚠️ You closed before 10 seconds finished—please start again from Step 1:');
+        return;
+      }
+
+      const btn = document.getElementById('adStepBtn');
+      const notice = document.getElementById('adStepNotice');
+      const fill = document.getElementById('unlockProgressFill');
+
+      if (monetagActiveStep === 1) {
+        currentUnlockStep = 2;
+        if (btn) { btn.disabled = false; btn.innerText = '🚀 Confirm Step 2 (Step 2/3)'; }
+        if (notice) notice.innerText = '✅ Step 1 completed (33%)! Click below for Step 2:';
+        if (fill) fill.style.width = '33%';
+      } else if (monetagActiveStep === 2) {
+        currentUnlockStep = 3;
+        if (btn) { btn.disabled = false; btn.innerText = '🚀 Confirm Step 3 (Step 3/3)'; }
+        if (notice) notice.innerText = '✅ Step 2 completed (66%)! Only 1 step left:';
+        if (fill) fill.style.width = '66%';
+      } else if (monetagActiveStep === 3) {
+        currentUnlockStep = 4;
+        if (btn) { btn.disabled = false; btn.innerText = '🔓 Click to View Download Links'; }
+        if (notice) notice.innerText = '🎉 100% Unlocked! Click below to view your download links:';
+        if (fill) fill.style.width = '100%';
+      }
+    }
+
+    function handleAdUnlockStep() {
+      if (!currentMovie) return;
+      const btn = document.getElementById('adStepBtn');
+      const notice = document.getElementById('adStepNotice');
+
+      if (currentUnlockStep === 4) {
+        if (currentMovie.isFromSheet) {
+          document.getElementById('adUnlockBox').style.display = 'none';
+          renderDownloadButtons();
+          document.getElementById('qualityContainer').style.display = 'flex';
+        } else {
+          openTelegramNoticeModal(currentMovie.title);
+        }
+        return;
+      }
+
+      const stepToRun = currentUnlockStep;
+      waitingReturnStep = stepToRun;
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = '⏳ View the ad and return here...';
+      }
+      if (notice) {
+        notice.innerText = `Step ${stepToRun}/3: Ad opened—return to this page to start the 10-second verification.`;
+      }
+
+      openSafeUrl(getAdsterraUrlForStep(stepToRun));
+
+      clearTimeout(returnFallbackTimer);
+      returnFallbackTimer = setTimeout(() => {
+        if (waitingReturnStep === stepToRun && document.visibilityState === 'visible') {
+          waitingReturnStep = 0;
+          openMonetagCountdownOverlay(stepToRun);
+        }
+      }, 1800);
     }
 
     function toggleEpisodePanel(idx) { const el = document.getElementById(`epQualities_${idx}`); if (el) el.style.display = (el.style.display === 'none') ? 'flex' : 'none'; }
@@ -2117,9 +2559,7 @@
       if (currentMovie) sessionStorage.setItem('tg_state_' + currentMovie.id, 'dismissed');
       document.getElementById('tgFeedbackAlert').style.display = 'none';
       document.getElementById('adUnlockBox').style.display = 'block';
-      currentUnlockStep = 1; clearInterval(stepCountdownTimer);
-      const btn = document.getElementById('adStepBtn'); btn.disabled = false; btn.innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
-      document.getElementById('adStepNotice').innerText = 'Click the button below to unlock download links:';
+      resetUnlockFlowUI();
     }
 
     async function sendAutoDetailRequest() {
@@ -2151,22 +2591,30 @@
     function closeNonSheetWatchModal() { document.getElementById('nonSheetWatchModal').style.display = 'none'; }
     function goToUnlockFromWatchMsg() {
       closeNonSheetWatchModal(); document.getElementById('tgFeedbackAlert').style.display = 'none'; document.getElementById('qualityContainer').style.display = 'none'; document.getElementById('adUnlockBox').style.display = 'block';
-      currentUnlockStep = 1; clearInterval(stepCountdownTimer);
-      const btn = document.getElementById('adStepBtn'); btn.disabled = false; btn.innerText = '🚀 Unlock Download Links in 1 Click (Step 1/2)';
-      document.getElementById('adStepNotice').innerText = 'Click the unlock button below to watch this movie on Telegram:';
+      resetUnlockFlowUI('Click the unlock button below to watch this movie on Telegram:');
       document.getElementById('downloadSectionBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function loadCustomUrlIntoPlayer(rawUrl, customStatusLabel) {
-      let url = rawUrl.trim(); if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
-      const ip = document.getElementById('cineVideoPlayer'), db = document.getElementById('directVideoBox'), dv = document.getElementById('cineDirectVideo'), eb = document.getElementById('directExternalBar'), eBtn = document.getElementById('btnDirectExternalOpen'), sm = document.getElementById('trailerStatusMsg');
+      let url = rawUrl.trim();
+      if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+      const ip = document.getElementById('cineVideoPlayer'),
+            db = document.getElementById('directVideoBox'),
+            dv = document.getElementById('cineDirectVideo'),
+            eb = document.getElementById('directExternalBar'),
+            eBtn = document.getElementById('btnDirectExternalOpen'),
+            sm = document.getElementById('trailerStatusMsg'),
+            pSliders = document.getElementById('playerSlidersRow'),
+            volBar = document.getElementById('playerVolumeBar');
       resetPlayerElements();
 
       if (url.includes('youtube.com') || url.includes('youtu.be')) {
         const m = url.match(/(?:youtu\.be\/|watch\?v=|embed\/|shorts\/|v=)([\w-]{11})/);
         if (m) {
           ip.style.display = 'block';
-          ip.src = `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3`;
+          ip.src = `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&vq=hd1080&hd=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3`;
+          if (pSliders) pSliders.style.display = 'flex';
+          if (volBar) volBar.style.display = 'none';
           if (sm && customStatusLabel) { sm.innerText = customStatusLabel; sm.style.display = 'block'; }
           return;
         }
@@ -2179,7 +2627,9 @@
           const hash = vm[2] || (hMatch ? hMatch[1] : '');
           const hashParam = hash ? `&h=${hash}` : '';
           ip.style.display = 'block';
-          ip.src = `https://player.vimeo.com/video/${vm[1]}?autoplay=1&playsinline=1&dnt=1${hashParam}`;
+          ip.src = `https://player.vimeo.com/video/${vm[1]}?autoplay=1&quality=1080p&playsinline=1&dnt=1${hashParam}`;
+          if (pSliders) pSliders.style.display = 'flex';
+          if (volBar) volBar.style.display = 'none';
           if (sm && customStatusLabel) { sm.innerText = customStatusLabel; sm.style.display = 'block'; }
           return;
         }
@@ -2201,22 +2651,47 @@
         if (m) {
           ip.style.display = 'block';
           ip.src = `https://drive.google.com/file/d/${m[1] || m[2]}/preview`;
+          if (pSliders) pSliders.style.display = 'flex';
+          if (volBar) volBar.style.display = 'none';
           if (sm && customStatusLabel) { sm.innerText = customStatusLabel; sm.style.display = 'block'; }
           return;
         }
       }
 
       const isKnownEmbed = /embed|player|vidsrc|autoembed|multiembed|smashystream|streamtape|dood|mixdrop|filemoon|voe\.sx|ok\.ru|dailymotion/i.test(url);
-      const isDirectVideoHost = /\.(mp4|m4v|webm|ogg|mkv|mov)(\?.*)?$/i.test(url) || /r2\.dev|r2\.cloudflarestorage\.com|workers\.dev|firebasestorage|digitaloceanspaces|b-cdn\.net|backblazeb2|\/stream\//i.test(url);
-      if (isDirectVideoHost && !isKnownEmbed) {
-        ip.style.display = 'none'; db.style.display = 'block'; if (eb) eb.style.display = 'none';
-        dv.onerror = () => { dv.onerror = null; if (sm) { sm.innerText = '⚠️ This video format is not supported on this device browser.'; sm.style.display = 'block'; } };
-        dv.src = url; dv.play().catch(() => {});
+      if (isKnownEmbed) {
+        ip.style.display = 'block';
+        ip.src = url;
+        if (pSliders) pSliders.style.display = 'flex';
+        if (volBar) volBar.style.display = 'none';
+        if (eb && eBtn) { eb.style.display = 'block'; eBtn.onclick = () => openSafeUrl(url); }
         if (sm && customStatusLabel) { sm.innerText = customStatusLabel; sm.style.display = 'block'; }
         return;
       }
-      if (eb && eBtn) { eb.style.display = 'block'; eBtn.onclick = () => openSafeUrl(url); }
-      ip.style.display = 'block'; ip.src = url;
+
+      // Direct stream links (including https://f2l3.reaperzclub.dpdns.org/AgAD... and .mp4/.mkv/CDN links)
+      ip.style.display = 'none';
+      db.style.display = 'block';
+      if (eb) eb.style.display = 'none';
+      if (pSliders) pSliders.style.display = 'flex';
+      if (volBar) volBar.style.display = 'flex';
+
+      let switchedToIframe = false;
+      dv.onerror = () => {
+        dv.onerror = null;
+        if (switchedToIframe) return;
+        switchedToIframe = true;
+        db.style.display = 'none';
+        ip.style.display = 'block';
+        ip.src = url;
+        if (volBar) volBar.style.display = 'none';
+        if (eb && eBtn) { eb.style.display = 'block'; eBtn.onclick = () => openSafeUrl(url); }
+      };
+
+      dv.muted = false;
+      dv.volume = 1;
+      dv.src = url;
+      dv.play().catch(() => {});
       if (sm && customStatusLabel) { sm.innerText = customStatusLabel; sm.style.display = 'block'; }
     }
 
@@ -2276,8 +2751,6 @@
           document.getElementById('serverSelectionBar').style.display = 'none';
           document.getElementById('qualitySwitchBar').style.display = 'none';
           loadCustomUrlIntoPlayer(customUrl);
-          if (pSliders) pSliders.style.display = 'flex';
-          if (volBar) volBar.style.display = (document.getElementById('directVideoBox').style.display === 'block') ? 'flex' : 'none';
           pw.style.display = 'block';
           return;
         }
@@ -2526,7 +2999,5 @@
 
     fetchMoviesFromGitHub();
   </script>
-
-  <script data-cfasync="false" src="https://bancadeltempoidea.org/14/3c12a21d984165afb2e8c2dc456ef1d8"></script>
 </body>
   </html>
